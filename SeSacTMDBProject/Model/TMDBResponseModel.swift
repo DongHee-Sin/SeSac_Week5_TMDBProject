@@ -11,7 +11,11 @@ import Foundation
 struct TMDBMedia {
     let title: String
     let description: String
+    
     let releaseDate: String
+    let genres: Int
+    let grade: Double
+    
     let imageURL: String
 }
 
@@ -33,5 +37,9 @@ struct TMDBDataManager {
     
     mutating func addData(newData: TMDBMedia) {
         mediaList.append(newData)
+    }
+    
+    func getMediaData(at index: Int) -> TMDBMedia {
+        return mediaList[index]
     }
 }

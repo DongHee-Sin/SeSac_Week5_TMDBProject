@@ -47,7 +47,7 @@ class ViewController: UIViewController {
     
     func requestTranslatedData() {
         // URL 문자열
-        let url = EndPoint.TMDBEndPoint + "movie" + "/" + "week" + "?" + "api_key=" + APIKeys.TMDBKEY
+        let url = EndPoint.TMDBEndPoint + "movie" + "/" + "week" + "?api_key=" + APIKeys.TMDBKEY
         
         AF.request(url, method: .get).validate(statusCode: 200...500).responseJSON { [unowned self] response in
             switch response.result {
@@ -56,6 +56,25 @@ class ViewController: UIViewController {
                 print(json)
                 let statusCode = response.response?.statusCode ?? 500
 
+                if 200..<300 ~= statusCode {
+                    
+                    json["results"].arrayValue.forEach {
+                        let title = $0["title"].stringValue
+                        let description = $0["overview"].stringValue
+                        let releaseDate = $0["release_date"].stringValue
+                        let genres = $0["genre_ids"][0].intValue
+                        let grade = $0["vote_average"].doubleValue
+                        let imageURL = $0["backdrop_path"].stringValue
+                        
+                        let mediaData = TMDBMedia(title: title, description: description, releaseDate: releaseDate, genres: genres, grade: grade, imageURL: imageURL)
+                        mediaDataManager.addData(newData: mediaData)
+                    }
+                    
+                    collectionView.reloadData()
+                    
+                }else {
+                    print("STATUSCODE : \(statusCode)")
+                }
                 
                 
             case .failure(let error):
@@ -76,11 +95,13 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
+        cell.updateCell(by: mediaDataManager.getMediaData(at: indexPath.row))
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return mediaDataManager.count
     }
     
     
@@ -93,7 +114,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         let width: CGFloat = UIScreen.main.bounds.width - (itemSpacing * (rowCount-1)) - (sectionSpacing * 2)
         let itemWidth: CGFloat = width / rowCount
         
-        layout.itemSize = CGSize(width: itemWidth, height: itemWidth * 1.2)
+        layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: sectionSpacing, left: sectionSpacing, bottom: sectionSpacing, right: sectionSpacing)
         layout.minimumLineSpacing = itemSpacing

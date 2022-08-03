@@ -48,4 +48,29 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
         to.layer.shadowOffset = CGSize(width: width, height: height)
         to.layer.shadowPath = nil
     }
+    
+    
+    func updateCell(by data: TMDBMedia) {
+        titleLabel.text = data.title
+        releaseDate.text = data.releaseDate
+        let grade = Double(Int(data.grade * 10)) / 10
+        gradeLabel.text = "\(grade)"
+        descriptionLabel.text = data.description
+        if let url = URL(string: EndPoint.TMDBImagePathEndPoint + data.imageURL) {
+            loadImage(url: url)
+        }
+    }
+    
+    
+    func loadImage(url: URL) {
+        DispatchQueue.global().async { [unowned self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.posterImage.image = image
+                    }
+                }
+            }
+        }
+    }
 }
