@@ -11,6 +11,15 @@ import Alamofire
 import SwiftyJSON
 
 
+enum MediaType: String {
+    case all, movie, tv, person
+}
+
+enum TimeWindow: String {
+    case day, week
+}
+
+
 class ViewController: UIViewController {
     
     // MARK: - Propertys
@@ -45,8 +54,8 @@ class ViewController: UIViewController {
     }
     
     
-    func requestTranslatedData() {
-        let url = EndPoint.TMDBEndPoint + "movie" + "/" + "week" + "?api_key=" + APIKeys.TMDBKEY
+    func requestTranslatedData(mediaType: MediaType, timeWindow: TimeWindow) {
+        let url = EndPoint.TMDBEndPoint + "\(mediaType.rawValue)/\(timeWindow.rawValue)?api_key=\(APIKeys.TMDBKEY)"
         
         AF.request(url, method: .get).validate(statusCode: 200...500).responseJSON { [unowned self] response in
             switch response.result {
@@ -113,7 +122,7 @@ class ViewController: UIViewController {
             }
         }
         
-        requestTranslatedData()
+        requestTranslatedData(mediaType: .movie, timeWindow: .week)
     }
 }
 
