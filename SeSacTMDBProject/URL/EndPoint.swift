@@ -12,4 +12,6 @@ struct EndPoint {
     static let TMDBImagePathEndPoint = "https://image.tmdb.org/t/p/w500"
     
     static let TMDBEndPoint = "https://api.themoviedb.org/3/trending/"
+    
+    static let GenreURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=\(APIKeys.TMDBKEY)&language=en-US"
 }

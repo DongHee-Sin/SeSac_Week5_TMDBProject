@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         
         collectionView.collectionViewLayout = configureCollectionViewLayout(rowCount: 1)
         
-        requestTranslatedData()
+        requestGenres()
     }
 
 
@@ -46,7 +46,6 @@ class ViewController: UIViewController {
     
     
     func requestTranslatedData() {
-        // URL 문자열
         let url = EndPoint.TMDBEndPoint + "movie" + "/" + "week" + "?api_key=" + APIKeys.TMDBKEY
         
         AF.request(url, method: .get).validate(statusCode: 200...500).responseJSON { [unowned self] response in
@@ -62,7 +61,7 @@ class ViewController: UIViewController {
                         let title = $0["title"].stringValue
                         let description = $0["overview"].stringValue
                         let releaseDate = $0["release_date"].stringValue
-                        let genres = $0["genre_ids"][0].intValue
+                        let genres = mediaDataManager.getGenres(key: $0["genre_ids"][0].intValue)
                         let grade = $0["vote_average"].doubleValue
                         let imageURL = $0["backdrop_path"].stringValue
                         
@@ -83,6 +82,38 @@ class ViewController: UIViewController {
         }
         
         collectionView.reloadData()
+    }
+    
+    
+    func requestGenres() {
+        let url = EndPoint.GenreURL
+        
+        AF.request(url, method: .get).validate(statusCode: 200...500).responseJSON { [unowned self] response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print(json)
+                let statusCode = response.response?.statusCode ?? 500
+
+                if 200..<300 ~= statusCode {
+                    
+                    json["genres"].arrayValue.forEach {
+                        let key = $0["id"].intValue
+                        let value = $0["name"].stringValue
+                        mediaDataManager.addGenres(key: key, genre: value)
+                    }
+                    
+                }else {
+                    print("STATUSCODE : \(statusCode)")
+                }
+                
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+        requestTranslatedData()
     }
 }
 

@@ -41,10 +41,10 @@
                                         <color key="backgroundColor" red="0.8271417942" green="0.93856292519999995" blue="0.91257440479999996" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hTE-41-UqY">
-                                        <rect key="frame" x="16" y="192.5" width="50" height="20"/>
+                                        <rect key="frame" x="16" y="192.5" width="60" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="평점" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVA-QS-0yq">
-                                                <rect key="frame" x="0.0" y="0.0" width="25" height="20"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="30" height="20"/>
                                                 <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" systemColor="systemBackgroundColor"/>
@@ -65,7 +65,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8.8" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFt-sz-6nd">
-                                                <rect key="frame" x="25" y="0.0" width="25" height="20"/>
+                                                <rect key="frame" x="30" y="0.0" width="30" height="20"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
@@ -87,7 +87,7 @@
                                             </label>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="0Pp-zh-Yjd"/>
+                                            <constraint firstAttribute="width" constant="60" id="0Pp-zh-Yjd"/>
                                             <constraint firstAttribute="height" constant="20" id="ANN-Vg-adq"/>
                                         </constraints>
                                     </stackView>

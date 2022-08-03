@@ -13,7 +13,7 @@ struct TMDBMedia {
     let description: String
     
     let releaseDate: String
-    let genres: Int
+    let genres: String
     let grade: Double
     
     let imageURL: String
@@ -26,20 +26,26 @@ struct TMDBDataManager {
     // MARK: - Propertys
     private var mediaList: [TMDBMedia] = []
     
+    private var genresDictionary: [Int: String] = [:]
+    
     var count: Int { mediaList.count }
     
     
     
-    // MARK: - Methdos
-    mutating func replaceData(newDatas: [TMDBMedia]) {
-        mediaList = newDatas
-    }
-    
+    // MARK: - Methdos    
     mutating func addData(newData: TMDBMedia) {
         mediaList.append(newData)
     }
     
     func getMediaData(at index: Int) -> TMDBMedia {
         return mediaList[index]
+    }
+    
+    mutating func addGenres(key: Int, genre: String) {
+        genresDictionary[key] = genre
+    }
+    
+    func getGenres(key: Int) -> String {
+        return genresDictionary[key] ?? ""
     }
 }

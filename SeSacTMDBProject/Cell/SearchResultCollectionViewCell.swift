@@ -55,6 +55,7 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
         releaseDate.text = data.releaseDate
         let grade = Double(Int(data.grade * 10)) / 10
         gradeLabel.text = "\(grade)"
+        genresLabel.text = data.genres
         descriptionLabel.text = data.description
         if let url = URL(string: EndPoint.TMDBImagePathEndPoint + data.imageURL) {
             loadImage(url: url)
