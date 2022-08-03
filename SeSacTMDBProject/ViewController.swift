@@ -40,6 +40,11 @@ class ViewController: UIViewController {
 
     
     // MARK: - Methods
+    func configureInitialUI() {
+        collectionView.backgroundColor = .clear
+    }
+    
+    
     func requestTranslatedData() {
         // URL 문자열
         let url = EndPoint.TMDBEndPoint + "movie" + "/" + "week" + "?" + "api_key=" + APIKeys.TMDBKEY
@@ -75,15 +80,15 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        return 10
     }
     
     
     func configureCollectionViewLayout(rowCount: CGFloat) -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         
-        let sectionSpacing: CGFloat = 12
-        let itemSpacing: CGFloat = 12
+        let sectionSpacing: CGFloat = 8
+        let itemSpacing: CGFloat = 20
         
         let width: CGFloat = UIScreen.main.bounds.width - (itemSpacing * (rowCount-1)) - (sectionSpacing * 2)
         let itemWidth: CGFloat = width / rowCount
