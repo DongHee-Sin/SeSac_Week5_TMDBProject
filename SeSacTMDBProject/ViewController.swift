@@ -20,6 +20,7 @@ enum TimeWindow: String {
 }
 
 
+
 class ViewController: UIViewController {
     
     // MARK: - Propertys
@@ -36,12 +37,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
-        collectionView.register(UINib(nibName: SearchResultCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: SearchResultCollectionViewCell.identifier)
-        
-        collectionView.collectionViewLayout = configureCollectionViewLayout(rowCount: 1)
+        configureInitialUI()
         
         requestGenres()
     }
@@ -51,6 +47,34 @@ class ViewController: UIViewController {
     // MARK: - Methods
     func configureInitialUI() {
         collectionView.backgroundColor = .clear
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.register(UINib(nibName: SearchResultCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: SearchResultCollectionViewCell.identifier)
+        
+        collectionView.collectionViewLayout = configureCollectionViewLayout(rowCount: 1)
+        
+        setSearchController()
+        setNavigationBar()
+    }
+    
+    
+    func setSearchController() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.scopeButtonTitles = [
+            MediaType.all.rawValue,
+            MediaType.movie.rawValue,
+            MediaType.tv.rawValue,
+            MediaType.person.rawValue,
+        ]
+        self.navigationItem.searchController = searchController
+    }
+    
+    
+    func setNavigationBar() {
+        self.navigationItem.title = "TMDB"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     
@@ -75,7 +99,7 @@ class ViewController: UIViewController {
                         let imageURL = $0["backdrop_path"].stringValue
                         
                         let mediaData = TMDBMedia(title: title, description: description, releaseDate: releaseDate, genres: genres, grade: grade, imageURL: imageURL)
-                        mediaDataManager.addData(newData: mediaData)
+                        mediaDataManager.addMediaData(newData: mediaData)
                     }
                     
                     collectionView.reloadData()
