@@ -29,6 +29,9 @@ class MediaInfoTableViewHeader: UITableViewHeaderFooterView {
         
         posterImage.layer.borderColor = UIColor.white.cgColor
         posterImage.layer.borderWidth = 1
+        posterImage.contentMode = .scaleAspectFill
+        
+        backgroundImage.contentMode = .scaleAspectFill
     }
     
     

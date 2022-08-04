@@ -19,6 +19,8 @@ class MediaInfoViewController: UIViewController {
     var castList: [CastInfo] = []
     var crewList: [CrewInfo] = []
     
+    var isOverViewExtended: Bool = false
+    
     
     
     // MARK: - Outlet
@@ -44,6 +46,7 @@ class MediaInfoViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.register(UINib(nibName: "OverViewTableViewCell", bundle: nil), forCellReuseIdentifier: "OverViewTableViewCell")
         tableView.register(UINib(nibName: "PersonInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "PersonInfoTableViewCell")
         tableView.register(UINib(nibName: "MediaInfoTableViewHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "MediaInfoTableViewHeader")
         
@@ -126,13 +129,15 @@ extension MediaInfoViewController: UITableViewDelegate, UITableViewDataSource {
     
     // Cell
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 1 {
-            return castList.count
+            return 1
         }else if section == 2 {
+            return castList.count
+        }else if section == 3 {
             return crewList.count
         }else {
             return 0
@@ -141,32 +146,68 @@ extension MediaInfoViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PersonInfoTableViewCell", for: indexPath) as? PersonInfoTableViewCell else {
-            return UITableViewCell()
-        }
-        
         if indexPath.section == 1 {
-            cell.updateCell(dy: castList[indexPath.row])
-        }else if indexPath.section == 2 {
-            cell.updateCell(dy: crewList[indexPath.row])
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "OverViewTableViewCell", for: indexPath) as? OverViewTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            if let media = media {
+                cell.updateCell(overView: media.overView)
+            }
+            
+            if isOverViewExtended {
+                cell.configureExpandUI()
+            }else {
+                cell.configureShortenUI()
+            }
+            
+            cell.delegate = self
+            
+            return cell
+        }else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PersonInfoTableViewCell", for: indexPath) as? PersonInfoTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            if indexPath.section == 2 {
+                cell.updateCell(dy: castList[indexPath.row])
+            }else if indexPath.section == 3 {
+                cell.updateCell(dy: crewList[indexPath.row])
+            }
+            
+            return cell
         }
-        
-        return cell
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        if indexPath.section == 1 {
+            return UITableView.automaticDimension
+        }else {
+            return 100
+        }
     }
     
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1 {
-            return "Cast"
+            return "OverView"
         }else if section == 2 {
+            return "Cast"
+        }else if section == 3 {
             return "Crew"
         }else {
             return nil
         }
+    }
+}
+
+
+
+// MARK: - Custom Protocol
+extension MediaInfoViewController: OverViewExtensionDelegate {
+    func seeMoreButtonTapped() {
+        isOverViewExtended.toggle()
+        tableView.reloadData()
     }
 }
