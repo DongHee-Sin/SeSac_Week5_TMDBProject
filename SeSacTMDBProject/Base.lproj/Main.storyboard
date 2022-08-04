@@ -49,8 +49,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="z6I-Iz-LZ0">
-                        <barButtonItem key="leftBarButtonItem" image="line.3.horizontal" catalog="system" id="9Pj-ln-A5c"/>
-                        <barButtonItem key="rightBarButtonItem" image="magnifyingglass" catalog="system" id="FzP-FV-eZS"/>
+                        <barButtonItem key="leftBarButtonItem" image="line.3.horizontal" catalog="system" id="9Pj-ln-A5c">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="ODy-mW-vMq" id="FSF-A4-S4C"/>
@@ -81,7 +82,6 @@
     </scenes>
     <resources>
         <image name="line.3.horizontal" catalog="system" width="128" height="64"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

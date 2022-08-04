@@ -36,6 +36,8 @@ struct TMDBDataManager {
     }
     
     func getMediaData(at index: Int) -> TMDBMedia {
+        guard index < mediaList.count else { return TMDBMedia(title: "", description: "", releaseDate: "", genres: "", grade: 0, imageURL: "") }
+        
         return mediaList[index]
     }
     
@@ -45,5 +47,10 @@ struct TMDBDataManager {
     
     func getGenres(key: Int) -> String {
         return genresDictionary[key] ?? ""
+    }
+    
+    
+    mutating func removeAllData() {
+        mediaList.removeAll()
     }
 }

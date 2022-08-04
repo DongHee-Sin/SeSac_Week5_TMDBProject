@@ -62,12 +62,7 @@ class ViewController: UIViewController {
     
     func setSearchController() {
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.scopeButtonTitles = [
-            MediaType.all.rawValue,
-            MediaType.movie.rawValue,
-            MediaType.tv.rawValue,
-            MediaType.person.rawValue,
-        ]
+        searchController.searchBar.delegate = self
         self.navigationItem.searchController = searchController
     }
     
@@ -79,13 +74,15 @@ class ViewController: UIViewController {
     
     
     func requestTranslatedData(mediaType: MediaType, timeWindow: TimeWindow) {
+        mediaDataManager.removeAllData()
+        
         let url = EndPoint.TMDBEndPoint + "\(mediaType.rawValue)/\(timeWindow.rawValue)?api_key=\(APIKeys.TMDBKEY)"
         
-        AF.request(url, method: .get).validate(statusCode: 200...500).responseJSON { [unowned self] response in
+        AF.request(url, method: .get).validate(statusCode: 200...500).responseData { [unowned self] response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                print(json)
+
                 let statusCode = response.response?.statusCode ?? 500
 
                 if 200..<300 ~= statusCode {
@@ -113,15 +110,13 @@ class ViewController: UIViewController {
                 print(error)
             }
         }
-        
-        collectionView.reloadData()
     }
     
     
     func requestGenres() {
         let url = EndPoint.GenreURL
         
-        AF.request(url, method: .get).validate(statusCode: 200...500).responseJSON { [unowned self] response in
+        AF.request(url, method: .get).validate(statusCode: 200...500).responseData { [unowned self] response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -185,5 +180,12 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         layout.minimumInteritemSpacing = itemSpacing
         
         return layout
+    }
+}
+
+
+
+extension ViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     }
 }
