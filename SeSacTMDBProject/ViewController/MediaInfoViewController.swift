@@ -11,8 +11,10 @@ import Alamofire
 import SwiftyJSON
 
 
-class MediaInfoViewController: UIViewController {
+class MediaInfoViewController: UIViewController, CommonSetting {
 
+    static let identifier: String = String(describing: MediaInfoViewController.self)
+    
     // MARK: - Propertys
     var media: TMDBMedia?
     
@@ -46,9 +48,9 @@ class MediaInfoViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(UINib(nibName: "OverViewTableViewCell", bundle: nil), forCellReuseIdentifier: "OverViewTableViewCell")
-        tableView.register(UINib(nibName: "PersonInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "PersonInfoTableViewCell")
-        tableView.register(UINib(nibName: "MediaInfoTableViewHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "MediaInfoTableViewHeader")
+        tableView.register(UINib(nibName: OverViewTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: OverViewTableViewCell.identifier)
+        tableView.register(UINib(nibName: PersonInfoTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: PersonInfoTableViewCell.identifier)
+        tableView.register(UINib(nibName: MediaInfoTableViewHeader.identifier, bundle: nil), forHeaderFooterViewReuseIdentifier: MediaInfoTableViewHeader.identifier)
         
         self.navigationItem.largeTitleDisplayMode = .never
         
@@ -105,7 +107,7 @@ extension MediaInfoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section == 0 else { return nil }
         
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MediaInfoTableViewHeader") as? MediaInfoTableViewHeader else {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: MediaInfoTableViewHeader.identifier) as? MediaInfoTableViewHeader else {
             return nil
         }
         
@@ -147,7 +149,7 @@ extension MediaInfoViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 1 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "OverViewTableViewCell", for: indexPath) as? OverViewTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: OverViewTableViewCell.identifier, for: indexPath) as? OverViewTableViewCell else {
                 return UITableViewCell()
             }
             
@@ -165,7 +167,7 @@ extension MediaInfoViewController: UITableViewDelegate, UITableViewDataSource {
             
             return cell
         }else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PersonInfoTableViewCell", for: indexPath) as? PersonInfoTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: PersonInfoTableViewCell.identifier, for: indexPath) as? PersonInfoTableViewCell else {
                 return UITableViewCell()
             }
             

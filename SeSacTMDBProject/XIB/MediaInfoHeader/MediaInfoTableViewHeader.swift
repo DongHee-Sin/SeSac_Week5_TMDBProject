@@ -9,7 +9,9 @@ import UIKit
 
 import Kingfisher
 
-class MediaInfoTableViewHeader: UITableViewHeaderFooterView {
+class MediaInfoTableViewHeader: UITableViewHeaderFooterView, CommonSetting {
+    
+    static let identifier: String = String(describing: MediaInfoTableViewHeader.self)
 
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!

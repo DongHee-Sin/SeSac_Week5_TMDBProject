@@ -13,8 +13,10 @@ protocol OverViewExtensionDelegate {
 }
 
 
-class OverViewTableViewCell: UITableViewCell {
+class OverViewTableViewCell: UITableViewCell, CommonSetting {
 
+    static let identifier: String = String(describing: OverViewTableViewCell.self)
+    
     @IBOutlet weak var seeMoreButton: UIButton!
     @IBOutlet weak var overViewLabel: UILabel!
     
@@ -24,6 +26,11 @@ class OverViewTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        configureInitialUI()
+    }
+    
+    
+    func configureInitialUI() {
         self.selectionStyle = .none
     }
     

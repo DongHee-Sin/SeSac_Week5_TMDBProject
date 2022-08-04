@@ -30,6 +30,7 @@
 		D0C7FD74289BF324004EE566 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D0C7FD73289BF324004EE566 /* Kingfisher */; };
 		D0EA8FFE289C237B00FC69BA /* OverViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EA8FFC289C237B00FC69BA /* OverViewTableViewCell.swift */; };
 		D0EA8FFF289C237B00FC69BA /* OverViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0EA8FFD289C237B00FC69BA /* OverViewTableViewCell.xib */; };
+		D0EA9002289C30D100FC69BA /* CommonSettingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EA9001289C30D100FC69BA /* CommonSettingProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		D0B5B2D3289BD0800013E171 /* MediaInfoTableViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaInfoTableViewHeader.xib; sourceTree = "<group>"; };
 		D0EA8FFC289C237B00FC69BA /* OverViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverViewTableViewCell.swift; sourceTree = "<group>"; };
 		D0EA8FFD289C237B00FC69BA /* OverViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverViewTableViewCell.xib; sourceTree = "<group>"; };
+		D0EA9001289C30D100FC69BA /* CommonSettingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonSettingProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 		D064A4682899F6C8000FC6A9 /* SeSacTMDBProject */ = {
 			isa = PBXGroup;
 			children = (
+				D0EA9000289C30AC00FC69BA /* CommonSetting */,
 				D064A4872899FA8F000FC6A9 /* Key */,
 				D07CD990289A5DCA00FAA826 /* URL */,
 				D064A47D2899F6DE000FC6A9 /* LifeCycle */,
@@ -195,6 +198,14 @@
 			path = MediaOverViewCell;
 			sourceTree = "<group>";
 		};
+		D0EA9000289C30AC00FC69BA /* CommonSetting */ = {
+			isa = PBXGroup;
+			children = (
+				D0EA9001289C30D100FC69BA /* CommonSettingProtocol.swift */,
+			);
+			path = CommonSetting;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -285,6 +296,7 @@
 				D07CD99A289A619F00FAA826 /* SearchResultCollectionViewCell.swift in Sources */,
 				D0B5B2C1289BC6430013E171 /* MediaInfoViewController.swift in Sources */,
 				D07CD99E289A678800FAA826 /* TMDBResponseModel.swift in Sources */,
+				D0EA9002289C30D100FC69BA /* CommonSettingProtocol.swift in Sources */,
 				D0EA8FFE289C237B00FC69BA /* OverViewTableViewCell.swift in Sources */,
 				D0B5B2CC289BCDBD0013E171 /* PersonInfoTableViewCell.swift in Sources */,
 				D064A46A2899F6C8000FC6A9 /* AppDelegate.swift in Sources */,

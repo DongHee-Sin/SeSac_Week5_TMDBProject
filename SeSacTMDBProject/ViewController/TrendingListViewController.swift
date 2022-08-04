@@ -21,7 +21,9 @@ enum TimeWindow: String {
 
 
 
-class TrendingListViewController: UIViewController {
+class TrendingListViewController: UIViewController, CommonSetting {
+    
+    static let identifier: String = String(describing: TrendingListViewController.self)
     
     // MARK: - Propertys
     var mediaDataManager = TMDBDataManager()
@@ -171,7 +173,7 @@ extension TrendingListViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "MediaInfoViewController") as? MediaInfoViewController else {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: MediaInfoViewController.identifier) as? MediaInfoViewController else {
             return
         }
         

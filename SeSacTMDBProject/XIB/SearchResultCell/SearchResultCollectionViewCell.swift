@@ -9,7 +9,7 @@ import UIKit
 
 import Kingfisher
 
-class SearchResultCollectionViewCell: UICollectionViewCell {
+class SearchResultCollectionViewCell: UICollectionViewCell, CommonSetting {
 
     static let identifier = String(describing: SearchResultCollectionViewCell.self)
     
