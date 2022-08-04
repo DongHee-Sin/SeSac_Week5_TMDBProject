@@ -21,7 +21,7 @@ enum TimeWindow: String {
 
 
 
-class ViewController: UIViewController {
+class TrendingListViewController: UIViewController {
     
     // MARK: - Propertys
     var mediaDataManager = TMDBDataManager()
@@ -90,14 +90,16 @@ class ViewController: UIViewController {
                 if 200..<300 ~= statusCode {
                     
                     json["results"].arrayValue.forEach {
+                        let id = $0["id"].intValue
                         let title = $0["title"].stringValue
                         let description = $0["overview"].stringValue
                         let releaseDate = $0["release_date"].stringValue
                         let genres = mediaDataManager.getGenres(key: $0["genre_ids"][0].intValue)
                         let grade = $0["vote_average"].doubleValue
                         let imageURL = $0["backdrop_path"].stringValue
+                        let posterURL = $0["poster_path"].stringValue
                         
-                        let mediaData = TMDBMedia(title: title, description: description, releaseDate: releaseDate, genres: genres, grade: grade, imageURL: imageURL)
+                        let mediaData = TMDBMedia(id: id, title: title, overView: description, releaseDate: releaseDate, genres: genres, grade: grade, backgroundImageURL: imageURL, posterImageURL: posterURL)
                         mediaDataManager.addMediaData(newData: mediaData)
                     }
                     
@@ -153,7 +155,7 @@ class ViewController: UIViewController {
 
 
 // MARK: - CollectionView Protocol
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension TrendingListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCollectionViewCell.identifier, for: indexPath) as? SearchResultCollectionViewCell else {
             return UICollectionViewCell()
@@ -168,7 +170,19 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         return mediaDataManager.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "MediaInfoViewController") as? MediaInfoViewController else {
+            return
+        }
+        
+        vc.media = mediaDataManager.getMediaData(at: indexPath.row)
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
+    
+    
+    // Layout
     func configureCollectionViewLayout(rowCount: CGFloat) -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         
@@ -190,7 +204,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
 
 
-extension ViewController: UISearchBarDelegate {
+extension TrendingListViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // 검색 => 현재 데이터 삭제 후 네트워킹
     }
@@ -199,14 +213,12 @@ extension ViewController: UISearchBarDelegate {
 
 
 // MARK: - Pagenation) DataSourcePrefetching
-extension ViewController: UICollectionViewDataSourcePrefetching {
+extension TrendingListViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
             if mediaDataManager.count - 1 == indexPath.item && startPage < totalPage {
                 requestTranslatedData(mediaType: .movie, timeWindow: .week, page: startPage)
             }
         }
-    }
-    
-    
+    }    
 }

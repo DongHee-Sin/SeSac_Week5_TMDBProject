@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Kingfisher
+
 class SearchResultCollectionViewCell: UICollectionViewCell {
 
     static let identifier = String(describing: SearchResultCollectionViewCell.self)
@@ -56,22 +58,8 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
         let grade = Double(Int(data.grade * 10)) / 10
         gradeLabel.text = "\(grade)"
         genresLabel.text = data.genres
-        descriptionLabel.text = data.description
-        if let url = URL(string: EndPoint.TMDBImagePathEndPoint + data.imageURL) {
-            loadImage(url: url)
-        }
-    }
-    
-    
-    func loadImage(url: URL) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.posterImage.image = image
-                    }
-                }
-            }
-        }
+        descriptionLabel.text = data.overView
+        let url = URL(string: EndPoint.TMDBImagePathEndPoint + data.backgroundImageURL)
+        posterImage.kf.setImage(with: url)
     }
 }

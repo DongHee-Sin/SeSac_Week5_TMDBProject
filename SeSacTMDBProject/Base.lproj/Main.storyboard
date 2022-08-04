@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Trending List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SeSacTMDBProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TrendingListViewController" id="BYZ-38-t0r" customClass="TrendingListViewController" customModule="SeSacTMDBProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -60,6 +60,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="990" y="112"/>
+        </scene>
+        <!--Media Info View Controller-->
+        <scene sceneID="bKV-Io-eki">
+            <objects>
+                <viewController storyboardIdentifier="MediaInfoViewController" id="brX-17-hjp" customClass="MediaInfoViewController" customModule="SeSacTMDBProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4eL-ZU-PUJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hOM-Sj-7SL">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rzY-91-9pq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hOM-Sj-7SL" firstAttribute="top" secondItem="rzY-91-9pq" secondAttribute="top" id="1lp-f8-2z0"/>
+                            <constraint firstItem="rzY-91-9pq" firstAttribute="bottom" secondItem="hOM-Sj-7SL" secondAttribute="bottom" id="DE2-mm-gGh"/>
+                            <constraint firstItem="hOM-Sj-7SL" firstAttribute="leading" secondItem="rzY-91-9pq" secondAttribute="leading" id="JLu-jX-fFd"/>
+                            <constraint firstItem="rzY-91-9pq" firstAttribute="trailing" secondItem="hOM-Sj-7SL" secondAttribute="trailing" id="OK2-IW-yVi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="hOM-Sj-7SL" id="6vy-F4-JJ8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3CE-qt-U8Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2025" y="112"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vjA-Wc-69u">

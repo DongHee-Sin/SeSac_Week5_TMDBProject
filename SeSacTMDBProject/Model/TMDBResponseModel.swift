@@ -9,12 +9,14 @@ import Foundation
 
 
 struct TMDBMedia {
+    let id: Int
     let title: String
-    let description: String
+    let overView: String
     let releaseDate: String
     let genres: String
     let grade: Double
-    let imageURL: String
+    let backgroundImageURL: String
+    let posterImageURL: String
 }
 
 
@@ -36,7 +38,7 @@ struct TMDBDataManager {
     }
     
     func getMediaData(at index: Int) -> TMDBMedia {
-        guard index < mediaList.count else { return TMDBMedia(title: "", description: "", releaseDate: "", genres: "", grade: 0, imageURL: "") }
+        guard index < mediaList.count else { return TMDBMedia(id: 0, title: "", overView: "", releaseDate: "", genres: "", grade: 0, backgroundImageURL: "", posterImageURL: "") }
         
         return mediaList[index]
     }
