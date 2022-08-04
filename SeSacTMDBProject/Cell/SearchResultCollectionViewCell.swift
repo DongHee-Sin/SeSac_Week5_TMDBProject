@@ -64,11 +64,11 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
     
     
     func loadImage(url: URL) {
-        DispatchQueue.global().async { [unowned self] in
+        DispatchQueue.global().async { [weak self] in
             if let data = try? Data(contentsOf: url) {
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
-                        self.posterImage.image = image
+                        self?.posterImage.image = image
                     }
                 }
             }

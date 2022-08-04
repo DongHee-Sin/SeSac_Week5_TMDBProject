@@ -26,6 +26,9 @@ class ViewController: UIViewController {
     // MARK: - Propertys
     var mediaDataManager = TMDBDataManager()
     
+    var totalPage = 0
+    var startPage = 1
+    
     
     
     // MARK: - Outlet
@@ -50,6 +53,7 @@ class ViewController: UIViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.prefetchDataSource = self
         
         collectionView.register(UINib(nibName: SearchResultCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: SearchResultCollectionViewCell.identifier)
         
@@ -73,10 +77,8 @@ class ViewController: UIViewController {
     }
     
     
-    func requestTranslatedData(mediaType: MediaType, timeWindow: TimeWindow) {
-        mediaDataManager.removeAllData()
-        
-        let url = EndPoint.TMDBEndPoint + "\(mediaType.rawValue)/\(timeWindow.rawValue)?api_key=\(APIKeys.TMDBKEY)"
+    func requestTranslatedData(mediaType: MediaType, timeWindow: TimeWindow, page: Int) {
+        let url = EndPoint.TMDBEndPoint + "\(mediaType.rawValue)/\(timeWindow.rawValue)?api_key=\(APIKeys.TMDBKEY)&page=\(page)"
         
         AF.request(url, method: .get).validate(statusCode: 200...500).responseData { [unowned self] response in
             switch response.result {
@@ -84,7 +86,7 @@ class ViewController: UIViewController {
                 let json = JSON(value)
 
                 let statusCode = response.response?.statusCode ?? 500
-
+                
                 if 200..<300 ~= statusCode {
                     
                     json["results"].arrayValue.forEach {
@@ -98,6 +100,9 @@ class ViewController: UIViewController {
                         let mediaData = TMDBMedia(title: title, description: description, releaseDate: releaseDate, genres: genres, grade: grade, imageURL: imageURL)
                         mediaDataManager.addMediaData(newData: mediaData)
                     }
+                    
+                    totalPage = json["total_pages"].intValue
+                    startPage += 1
                     
                     collectionView.reloadData()
                     
@@ -120,7 +125,7 @@ class ViewController: UIViewController {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                print(json)
+
                 let statusCode = response.response?.statusCode ?? 500
 
                 if 200..<300 ~= statusCode {
@@ -141,7 +146,7 @@ class ViewController: UIViewController {
             }
         }
         
-        requestTranslatedData(mediaType: .movie, timeWindow: .week)
+        requestTranslatedData(mediaType: .movie, timeWindow: .week, page: startPage)
     }
 }
 
@@ -187,5 +192,21 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
 extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // 검색 => 현재 데이터 삭제 후 네트워킹
     }
+}
+
+
+
+// MARK: - Pagenation) DataSourcePrefetching
+extension ViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            if mediaDataManager.count - 1 == indexPath.item && startPage < totalPage {
+                requestTranslatedData(mediaType: .movie, timeWindow: .week, page: startPage)
+            }
+        }
+    }
+    
+    
 }
