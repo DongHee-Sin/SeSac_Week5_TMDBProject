@@ -156,8 +156,8 @@
 		D0B5B2C2289BC8F30013E171 /* XIB */ = {
 			isa = PBXGroup;
 			children = (
-				D0B5B2C3289BC90A0013E171 /* PersonInfoCell */,
 				D07CD997289A5FDD00FAA826 /* SearchResultCell */,
+				D0B5B2C3289BC90A0013E171 /* PersonInfoCell */,
 				D0B5B2D2289BD0650013E171 /* MediaInfoHeader */,
 			);
 			path = XIB;

@@ -7,8 +7,15 @@
 
 import Foundation
 
-struct PersonInfo {
+struct CastInfo {
     let name: String
     let character: String
-    let profileURL: URL
+    let profileURL: String?
+}
+
+
+struct CrewInfo {
+    let name: String
+    let department: String
+    let profileURL: String?
 }

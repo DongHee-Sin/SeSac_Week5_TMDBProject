@@ -7,17 +7,50 @@
 
 import UIKit
 
+import Kingfisher
+
 class PersonInfoTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var detailInfoLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
+        configureInitialUI()
+    }    
+    
+    
+    // MARK: - Methdos
+    func configureInitialUI() {
+        profileImage.layer.cornerRadius = profileImage.frame.height / 8
+        
+        self.selectionStyle = .none
     }
     
+    func updateCell(dy data: CastInfo) {
+        if let profileURLString = data.profileURL {
+            let profileURL = URL(string: EndPoint.TMDBImagePathEndPoint + profileURLString)
+            profileImage.kf.setImage(with: profileURL)
+        }else {
+            profileImage.tintColor = .darkGray
+            profileImage.image = UIImage(systemName: "person.fill")
+        }
+        nameLabel.text = data.name
+        detailInfoLabel.text = data.character
+    }
+    
+    func updateCell(dy data: CrewInfo) {
+        if let profileURLString = data.profileURL {
+            let profileURL = URL(string: EndPoint.TMDBImagePathEndPoint + profileURLString)
+            profileImage.kf.setImage(with: profileURL)
+        }else {
+            profileImage.tintColor = .darkGray
+            profileImage.image = UIImage(systemName: "person.fill")
+        }
+        nameLabel.text = data.name
+        detailInfoLabel.text = data.department
+    }
 }

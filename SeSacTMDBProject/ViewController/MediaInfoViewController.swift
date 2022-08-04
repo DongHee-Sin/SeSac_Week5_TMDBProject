@@ -16,8 +16,8 @@ class MediaInfoViewController: UIViewController {
     // MARK: - Propertys
     var media: TMDBMedia?
     
-    var castList: [PersonInfo] = []
-    var crewList: [PersonInfo] = []
+    var castList: [CastInfo] = []
+    var crewList: [CrewInfo] = []
     
     
     
@@ -46,6 +46,10 @@ class MediaInfoViewController: UIViewController {
         
         tableView.register(UINib(nibName: "PersonInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "PersonInfoTableViewCell")
         tableView.register(UINib(nibName: "MediaInfoTableViewHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "MediaInfoTableViewHeader")
+        
+        self.navigationItem.largeTitleDisplayMode = .never
+        
+        navigationItem.title = "출연/제작"
     }
     
     
@@ -60,6 +64,22 @@ class MediaInfoViewController: UIViewController {
                 let statusCode = response.response?.statusCode ?? 500
                 
                 if 200..<300 ~= statusCode {
+                    
+                    json["cast"].arrayValue.forEach {
+                        let name = $0["name"].stringValue
+                        let character = $0["character"].stringValue
+                        let profileURL = $0["profile_path"].string
+                        
+                        castList.append(CastInfo(name: name, character: character, profileURL: profileURL))
+                    }
+                    
+                    json["crew"].arrayValue.forEach {
+                        let name = $0["name"].stringValue
+                        let department = $0["department"].stringValue
+                        let profileURL = $0["profile_path"].string
+                        
+                        crewList.append(CrewInfo(name: name, department: department, profileURL: profileURL))
+                    }
                     
                     tableView.reloadData()
                     
@@ -87,38 +107,66 @@ extension MediaInfoViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         if let media = media {
-            header.updateCell(data: media)
+            header.updateCell(dy: media)
         }
         
         return header
     }
     
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return UIScreen.main.bounds.width / 2 * 1.2
+        if section == 0 {
+            return UIScreen.main.bounds.width / 2 * 1.2
+        }else {
+            return 50
+        }
     }
     
     
     
     // Cell
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        if section == 1 {
             return castList.count
-        }else if section == 1 {
+        }else if section == 2 {
             return crewList.count
         }else {
             return 0
         }
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PersonInfoTableViewCell", for: indexPath) as? PersonInfoTableViewCell else {
             return UITableViewCell()
         }
         
+        if indexPath.section == 1 {
+            cell.updateCell(dy: castList[indexPath.row])
+        }else if indexPath.section == 2 {
+            cell.updateCell(dy: crewList[indexPath.row])
+        }
+        
         return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 1 {
+            return "Cast"
+        }else if section == 2 {
+            return "Crew"
+        }else {
+            return nil
+        }
     }
 }

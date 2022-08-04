@@ -26,10 +26,13 @@ class MediaInfoTableViewHeader: UITableViewHeaderFooterView {
         titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
         titleLabel.textColor = .white
         titleLabel.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
+        
+        posterImage.layer.borderColor = UIColor.white.cgColor
+        posterImage.layer.borderWidth = 1
     }
     
     
-    func updateCell(data: TMDBMedia) {
+    func updateCell(dy data: TMDBMedia) {
         let backgroundURL = URL(string: EndPoint.TMDBImagePathEndPoint + data.backgroundImageURL)
         backgroundImage.kf.setImage(with: backgroundURL)
         
