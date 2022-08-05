@@ -138,7 +138,9 @@ class TrendingListViewController: UIViewController, CommonSetting {
         APIManager.shared.requestAPI(url: url) { [unowned self] json in
             let youtubeLinkKey = json["results"].arrayValue[0]["key"].stringValue
             
-            presentWebView(linkKey: youtubeLinkKey)
+            DispatchQueue.main.async { [unowned self] in
+                presentWebView(linkKey: youtubeLinkKey)
+            }
         }
     }
 }

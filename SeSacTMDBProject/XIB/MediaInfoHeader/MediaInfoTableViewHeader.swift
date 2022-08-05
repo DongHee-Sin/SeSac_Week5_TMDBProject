@@ -28,6 +28,7 @@ class MediaInfoTableViewHeader: UITableViewHeaderFooterView, CommonSetting {
         titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
         titleLabel.textColor = .white
         titleLabel.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
+        titleLabel.minimumScaleFactor = 0.7
         
         posterImage.layer.borderColor = UIColor.white.cgColor
         posterImage.layer.borderWidth = 1

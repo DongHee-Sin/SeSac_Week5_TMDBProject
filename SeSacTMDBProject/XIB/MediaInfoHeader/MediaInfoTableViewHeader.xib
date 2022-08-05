@@ -48,6 +48,7 @@
                         <constraint firstItem="vWD-k9-2Oc" firstAttribute="leading" secondItem="6x3-1r-7sy" secondAttribute="leading" constant="20" id="NxN-W2-0e2"/>
                         <constraint firstAttribute="width" secondItem="6x3-1r-7sy" secondAttribute="height" multiplier="2:1.2" id="Ykg-qv-DTN"/>
                         <constraint firstItem="vWD-k9-2Oc" firstAttribute="top" secondItem="6x3-1r-7sy" secondAttribute="top" constant="20" id="cqk-9x-E8e"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vWD-k9-2Oc" secondAttribute="trailing" constant="20" id="rvp-qC-9db"/>
                         <constraint firstItem="qNU-Ej-vgL" firstAttribute="leading" secondItem="6x3-1r-7sy" secondAttribute="leading" id="s3d-u4-1ec"/>
                         <constraint firstItem="c6f-Pv-BQt" firstAttribute="top" secondItem="vWD-k9-2Oc" secondAttribute="bottom" constant="12" id="w8N-Xw-E2D"/>
                     </constraints>
