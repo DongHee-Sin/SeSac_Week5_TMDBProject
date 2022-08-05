@@ -20,6 +20,7 @@ class SearchResultCollectionViewCell: UICollectionViewCell, CommonSetting {
     static let identifier = String(describing: SearchResultCollectionViewCell.self)
     
     var delegate: WebViewButtonDelegate?
+    var mediaID: Int?
     
     // MARK: - Outlet
     @IBOutlet weak var forShadowView: UIView!
@@ -74,6 +75,6 @@ class SearchResultCollectionViewCell: UICollectionViewCell, CommonSetting {
     
     
     @IBAction func webViewButtonTapped(_ sender: UIButton) {
-        delegate?.webViewButtonTapped(mediaID: 12)
+        delegate?.webViewButtonTapped(mediaID: mediaID ?? 0)
     }
 }

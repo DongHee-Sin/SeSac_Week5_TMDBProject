@@ -17,7 +17,7 @@ struct EndPoint {
     
     static let MediaInfoEndPoint = "https://api.themoviedb.org/3/movie/"
     
-    static let webViewRequestEndpoint = "https://api.themoviedb.org/3/movie/12/videos?language=en-US&api_key="
+    static let webViewRequestEndpoint = "https://api.themoviedb.org/3/movie/"
     
     static let youtubeEndPoint = "https://www.youtube.com/watch?v="
 }

@@ -166,7 +166,7 @@ class TrendingListViewController: UIViewController, CommonSetting {
     
     
     func requestYoutubeLink(mediaID: Int) {
-        let url = EndPoint.webViewRequestEndpoint + APIKeys.TMDBKEY
+        let url = EndPoint.webViewRequestEndpoint + "\(mediaID)/videos?language=en-US&api_key=\(APIKeys.TMDBKEY)"
         
         AF.request(url, method: .get).validate(statusCode: 200...500).responseData { [unowned self] response in
             switch response.result {
@@ -202,8 +202,11 @@ extension TrendingListViewController: UICollectionViewDelegate, UICollectionView
             return UICollectionViewCell()
         }
         
+        let mediaData = mediaDataManager.getMediaData(at: indexPath.row)
+        
+        cell.mediaID = mediaData.id
         cell.delegate = self
-        cell.updateCell(by: mediaDataManager.getMediaData(at: indexPath.row))
+        cell.updateCell(by: mediaData)
         
         return cell
     }
