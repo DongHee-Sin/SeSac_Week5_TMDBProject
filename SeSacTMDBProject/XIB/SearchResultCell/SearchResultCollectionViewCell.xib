@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -40,6 +41,27 @@
                                         <rect key="frame" x="0.0" y="0.0" width="302" height="228.5"/>
                                         <color key="backgroundColor" red="0.8271417942" green="0.93856292519999995" blue="0.91257440479999996" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ycm-g4-dPe">
+                                        <rect key="frame" x="236" y="16" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="ncg-zg-zP8"/>
+                                            <constraint firstAttribute="width" secondItem="Ycm-g4-dPe" secondAttribute="height" multiplier="1:1" id="ztl-Wk-mb8"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal">
+                                            <imageReference key="image" image="paperclip.circle.fill" catalog="system" renderingMode="hierarchical">
+                                                <hierarchicalColors>
+                                                    <color systemColor="labelColor"/>
+                                                    <color systemColor="secondaryLabelColor"/>
+                                                    <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </hierarchicalColors>
+                                            </imageReference>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="webViewButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ccO-tQ-Ufk"/>
+                                        </connections>
+                                    </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hTE-41-UqY">
                                         <rect key="frame" x="16" y="192.5" width="60" height="20"/>
                                         <subviews>
@@ -160,6 +182,8 @@
                                     <constraint firstItem="KNv-mG-PRB" firstAttribute="leading" secondItem="8ml-QA-qhd" secondAttribute="leading" id="Qtr-2E-oiw"/>
                                     <constraint firstItem="SBJ-lp-oT1" firstAttribute="height" secondItem="sRp-Pg-yIK" secondAttribute="height" multiplier="0.65" id="Slu-Eg-nHz"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KNv-mG-PRB" secondAttribute="trailing" constant="12" id="T91-vj-q8e"/>
+                                    <constraint firstItem="Ycm-g4-dPe" firstAttribute="top" secondItem="SBJ-lp-oT1" secondAttribute="top" constant="16" id="ZRf-OM-swp"/>
+                                    <constraint firstItem="Ycm-g4-dPe" firstAttribute="trailing" secondItem="SBJ-lp-oT1" secondAttribute="trailing" constant="-16" id="eFW-1r-IOT"/>
                                     <constraint firstItem="oiJ-Ra-Juv" firstAttribute="leading" secondItem="sRp-Pg-yIK" secondAttribute="leading" constant="16" id="iKp-y4-kHJ"/>
                                     <constraint firstItem="P13-lK-wnk" firstAttribute="top" secondItem="oiJ-Ra-Juv" secondAttribute="bottom" id="p5H-Fp-0F0"/>
                                     <constraint firstItem="8ml-QA-qhd" firstAttribute="top" secondItem="SBJ-lp-oT1" secondAttribute="bottom" constant="16" id="qds-gy-vwq"/>
@@ -205,8 +229,12 @@
     </objects>
     <resources>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <image name="paperclip.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

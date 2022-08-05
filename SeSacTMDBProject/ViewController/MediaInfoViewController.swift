@@ -210,6 +210,6 @@ extension MediaInfoViewController: UITableViewDelegate, UITableViewDataSource {
 extension MediaInfoViewController: OverViewExtensionDelegate {
     func seeMoreButtonTapped() {
         isOverViewExtended.toggle()
-        tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+        tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .fade)
     }
 }

@@ -21,6 +21,7 @@
 		D07CD99A289A619F00FAA826 /* SearchResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07CD998289A619F00FAA826 /* SearchResultCollectionViewCell.swift */; };
 		D07CD99B289A619F00FAA826 /* SearchResultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07CD999289A619F00FAA826 /* SearchResultCollectionViewCell.xib */; };
 		D07CD99E289A678800FAA826 /* TMDBResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07CD99D289A678800FAA826 /* TMDBResponseModel.swift */; };
+		D07D4F33289D348D00602949 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07D4F32289D348D00602949 /* WebViewController.swift */; };
 		D0B5B2C1289BC6430013E171 /* MediaInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B5B2C0289BC6430013E171 /* MediaInfoViewController.swift */; };
 		D0B5B2CC289BCDBD0013E171 /* PersonInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B5B2CA289BCDBD0013E171 /* PersonInfoTableViewCell.swift */; };
 		D0B5B2CD289BCDBD0013E171 /* PersonInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B5B2CB289BCDBD0013E171 /* PersonInfoTableViewCell.xib */; };
@@ -48,6 +49,7 @@
 		D07CD998289A619F00FAA826 /* SearchResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		D07CD999289A619F00FAA826 /* SearchResultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCollectionViewCell.xib; sourceTree = "<group>"; };
 		D07CD99D289A678800FAA826 /* TMDBResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBResponseModel.swift; sourceTree = "<group>"; };
+		D07D4F32289D348D00602949 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		D0B5B2C0289BC6430013E171 /* MediaInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaInfoViewController.swift; sourceTree = "<group>"; };
 		D0B5B2CA289BCDBD0013E171 /* PersonInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoTableViewCell.swift; sourceTree = "<group>"; };
 		D0B5B2CB289BCDBD0013E171 /* PersonInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonInfoTableViewCell.xib; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			children = (
 				D064A46D2899F6C8000FC6A9 /* TrendingListViewController.swift */,
 				D0B5B2C0289BC6430013E171 /* MediaInfoViewController.swift */,
+				D07D4F32289D348D00602949 /* WebViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -163,9 +166,9 @@
 		D0B5B2C2289BC8F30013E171 /* XIB */ = {
 			isa = PBXGroup;
 			children = (
-				D0EA8FFB289C235D00FC69BA /* MediaOverViewCell */,
 				D07CD997289A5FDD00FAA826 /* SearchResultCell */,
 				D0B5B2C3289BC90A0013E171 /* PersonInfoCell */,
+				D0EA8FFB289C235D00FC69BA /* MediaOverViewCell */,
 				D0B5B2D2289BD0650013E171 /* MediaInfoHeader */,
 			);
 			path = XIB;
@@ -303,6 +306,7 @@
 				D07CD98F289A5DBF00FAA826 /* EndPoint.swift in Sources */,
 				D07CD98D289A5C5C00FAA826 /* APIKeys.swift in Sources */,
 				D0B5B2D1289BD0620013E171 /* MediaInfoTableViewHeader.swift in Sources */,
+				D07D4F33289D348D00602949 /* WebViewController.swift in Sources */,
 				D0B5B2CF289BCF040013E171 /* PersonInfoModel.swift in Sources */,
 				D064A46C2899F6C8000FC6A9 /* SceneDelegate.swift in Sources */,
 			);

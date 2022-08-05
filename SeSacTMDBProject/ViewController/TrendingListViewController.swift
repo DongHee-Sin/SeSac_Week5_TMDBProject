@@ -68,7 +68,6 @@ class TrendingListViewController: UIViewController, CommonSetting {
     
     func setSearchController() {
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.delegate = self
         self.navigationItem.searchController = searchController
     }
     
@@ -79,6 +78,18 @@ class TrendingListViewController: UIViewController, CommonSetting {
     }
     
     
+    func presentWebView(linkKey: String) {
+        guard let webVC = storyboard?.instantiateViewController(withIdentifier: WebViewController.identifier) as? WebViewController else {
+            return
+        }
+        
+        webVC.linkKey = linkKey
+        
+        present(webVC, animated: true)
+    }
+    
+    
+    // MARK: - Network
     func requestTranslatedData(mediaType: MediaType, timeWindow: TimeWindow, page: Int) {
         let url = EndPoint.TMDBEndPoint + "\(mediaType.rawValue)/\(timeWindow.rawValue)?api_key=\(APIKeys.TMDBKEY)&page=\(page)"
         
@@ -152,6 +163,34 @@ class TrendingListViewController: UIViewController, CommonSetting {
         
         requestTranslatedData(mediaType: .movie, timeWindow: .week, page: startPage)
     }
+    
+    
+    func requestYoutubeLink(mediaID: Int) {
+        let url = EndPoint.webViewRequestEndpoint + APIKeys.TMDBKEY
+        
+        AF.request(url, method: .get).validate(statusCode: 200...500).responseData { [unowned self] response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                
+                let statusCode = response.response?.statusCode ?? 500
+                
+                if 200..<300 ~= statusCode {
+
+                    let youtubeLinkKey = json["results"].arrayValue[0]["key"].stringValue
+                    
+                    presentWebView(linkKey: youtubeLinkKey)
+                    
+                }else {
+                    print("STATUSCODE : \(statusCode)")
+                }
+                
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
 
 
@@ -163,6 +202,7 @@ extension TrendingListViewController: UICollectionViewDelegate, UICollectionView
             return UICollectionViewCell()
         }
         
+        cell.delegate = self
         cell.updateCell(by: mediaDataManager.getMediaData(at: indexPath.row))
         
         return cell
@@ -206,14 +246,6 @@ extension TrendingListViewController: UICollectionViewDelegate, UICollectionView
 
 
 
-extension TrendingListViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        // 검색 => 현재 데이터 삭제 후 네트워킹
-    }
-}
-
-
-
 // MARK: - Pagenation) DataSourcePrefetching
 extension TrendingListViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
@@ -223,4 +255,13 @@ extension TrendingListViewController: UICollectionViewDataSourcePrefetching {
             }
         }
     }    
+}
+
+
+
+// MARK: - WebViewButton Delegate
+extension TrendingListViewController: WebViewButtonDelegate {
+    func webViewButtonTapped(mediaID: Int) {
+        requestYoutubeLink(mediaID: mediaID)
+    }
 }

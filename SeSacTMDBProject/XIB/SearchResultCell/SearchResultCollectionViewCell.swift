@@ -9,9 +9,17 @@ import UIKit
 
 import Kingfisher
 
+
+protocol WebViewButtonDelegate {
+    func webViewButtonTapped(mediaID: Int)
+}
+
+
 class SearchResultCollectionViewCell: UICollectionViewCell, CommonSetting {
 
     static let identifier = String(describing: SearchResultCollectionViewCell.self)
+    
+    var delegate: WebViewButtonDelegate?
     
     // MARK: - Outlet
     @IBOutlet weak var forShadowView: UIView!
@@ -61,5 +69,11 @@ class SearchResultCollectionViewCell: UICollectionViewCell, CommonSetting {
         descriptionLabel.text = data.overView
         let url = URL(string: EndPoint.TMDBImagePathEndPoint + data.backgroundImageURL)
         posterImage.kf.setImage(with: url)
+    }
+    
+    
+    
+    @IBAction func webViewButtonTapped(_ sender: UIButton) {
+        delegate?.webViewButtonTapped(mediaID: 12)
     }
 }

@@ -61,6 +61,21 @@
             </objects>
             <point key="canvasLocation" x="990" y="112"/>
         </scene>
+        <!--Web View Controller-->
+        <scene sceneID="Cff-df-fUn">
+            <objects>
+                <viewController storyboardIdentifier="WebViewController" id="cIb-Qv-rSE" customClass="WebViewController" customModule="SeSacTMDBProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nNU-OC-Tq2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="FbP-nu-AHx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yzq-US-ZqB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2012" y="539"/>
+        </scene>
         <!--Media Info View Controller-->
         <scene sceneID="bKV-Io-eki">
             <objects>
@@ -89,7 +104,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3CE-qt-U8Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2025" y="112"/>
+            <point key="canvasLocation" x="2013" y="-203"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vjA-Wc-69u">
