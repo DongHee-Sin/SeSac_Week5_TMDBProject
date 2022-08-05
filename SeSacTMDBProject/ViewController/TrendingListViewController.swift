@@ -93,71 +93,36 @@ class TrendingListViewController: UIViewController, CommonSetting {
     func requestTranslatedData(mediaType: MediaType, timeWindow: TimeWindow, page: Int) {
         let url = EndPoint.TMDBEndPoint + "\(mediaType.rawValue)/\(timeWindow.rawValue)?api_key=\(APIKeys.TMDBKEY)&page=\(page)"
         
-        AF.request(url, method: .get).validate(statusCode: 200...500).responseData { [unowned self] response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-
-                let statusCode = response.response?.statusCode ?? 500
+        APIManager.shared.requestAPI(url: url) { [unowned self] json in
+            json["results"].arrayValue.forEach {
+                let id = $0["id"].intValue
+                let title = $0["title"].stringValue
+                let description = $0["overview"].stringValue
+                let releaseDate = $0["release_date"].stringValue
+                let genres = mediaDataManager.getGenres(key: $0["genre_ids"][0].intValue)
+                let grade = $0["vote_average"].doubleValue
+                let imageURL = $0["backdrop_path"].stringValue
+                let posterURL = $0["poster_path"].stringValue
                 
-                if 200..<300 ~= statusCode {
-                    
-                    json["results"].arrayValue.forEach {
-                        let id = $0["id"].intValue
-                        let title = $0["title"].stringValue
-                        let description = $0["overview"].stringValue
-                        let releaseDate = $0["release_date"].stringValue
-                        let genres = mediaDataManager.getGenres(key: $0["genre_ids"][0].intValue)
-                        let grade = $0["vote_average"].doubleValue
-                        let imageURL = $0["backdrop_path"].stringValue
-                        let posterURL = $0["poster_path"].stringValue
-                        
-                        let mediaData = TMDBMedia(id: id, title: title, overView: description, releaseDate: releaseDate, genres: genres, grade: grade, backgroundImageURL: imageURL, posterImageURL: posterURL)
-                        mediaDataManager.addMediaData(newData: mediaData)
-                    }
-                    
-                    totalPage = json["total_pages"].intValue
-                    startPage += 1
-                    
-                    collectionView.reloadData()
-                    
-                }else {
-                    print("STATUSCODE : \(statusCode)")
-                }
+                let mediaData = TMDBMedia(id: id, title: title, overView: description, releaseDate: releaseDate, genres: genres, grade: grade, backgroundImageURL: imageURL, posterImageURL: posterURL)
                 
-                
-            case .failure(let error):
-                print(error)
+                mediaDataManager.addMediaData(newData: mediaData)
             }
+            
+            totalPage = json["total_pages"].intValue
+            startPage += 1
+            
+            collectionView.reloadData()
         }
     }
     
     
     func requestGenres() {
-        let url = EndPoint.GenreURL
-        
-        AF.request(url, method: .get).validate(statusCode: 200...500).responseData { [unowned self] response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-
-                let statusCode = response.response?.statusCode ?? 500
-
-                if 200..<300 ~= statusCode {
-                    
-                    json["genres"].arrayValue.forEach {
-                        let key = $0["id"].intValue
-                        let value = $0["name"].stringValue
-                        mediaDataManager.addGenres(key: key, genre: value)
-                    }
-                    
-                }else {
-                    print("STATUSCODE : \(statusCode)")
-                }
-                
-                
-            case .failure(let error):
-                print(error)
+        APIManager.shared.requestAPI(url: EndPoint.GenreURL) { [unowned self] json in
+            json["genres"].arrayValue.forEach {
+                let key = $0["id"].intValue
+                let value = $0["name"].stringValue
+                mediaDataManager.addGenres(key: key, genre: value)
             }
         }
         
@@ -168,27 +133,10 @@ class TrendingListViewController: UIViewController, CommonSetting {
     func requestYoutubeLink(mediaID: Int) {
         let url = EndPoint.webViewRequestEndpoint + "\(mediaID)/videos?language=en-US&api_key=\(APIKeys.TMDBKEY)"
         
-        AF.request(url, method: .get).validate(statusCode: 200...500).responseData { [unowned self] response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                
-                let statusCode = response.response?.statusCode ?? 500
-                
-                if 200..<300 ~= statusCode {
-
-                    let youtubeLinkKey = json["results"].arrayValue[0]["key"].stringValue
-                    
-                    presentWebView(linkKey: youtubeLinkKey)
-                    
-                }else {
-                    print("STATUSCODE : \(statusCode)")
-                }
-                
-                
-            case .failure(let error):
-                print(error)
-            }
+        APIManager.shared.requestAPI(url: url) { [unowned self] json in
+            let youtubeLinkKey = json["results"].arrayValue[0]["key"].stringValue
+            
+            presentWebView(linkKey: youtubeLinkKey)
         }
     }
 }

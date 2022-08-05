@@ -61,39 +61,24 @@ class MediaInfoViewController: UIViewController, CommonSetting {
     func requestMediaInfo(movieID: Int) {
         let url = EndPoint.MediaInfoEndPoint + "\(movieID)/credits?api_key=\(APIKeys.TMDBKEY)&language=en-US"
         
-        AF.request(url, method: .get).validate(statusCode: 200...500).responseData { [unowned self] response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                print(json)
-                let statusCode = response.response?.statusCode ?? 500
+        APIManager.shared.requestAPI(url: url) { [unowned self] json in
+            json["cast"].arrayValue.forEach {
+                let name = $0["name"].stringValue
+                let character = $0["character"].stringValue
+                let profileURL = $0["profile_path"].string
                 
-                if 200..<300 ~= statusCode {
-                    
-                    json["cast"].arrayValue.forEach {
-                        let name = $0["name"].stringValue
-                        let character = $0["character"].stringValue
-                        let profileURL = $0["profile_path"].string
-                        
-                        castList.append(CastInfo(name: name, character: character, profileURL: profileURL))
-                    }
-                    
-                    json["crew"].arrayValue.forEach {
-                        let name = $0["name"].stringValue
-                        let department = $0["department"].stringValue
-                        let profileURL = $0["profile_path"].string
-                        
-                        crewList.append(CrewInfo(name: name, department: department, profileURL: profileURL))
-                    }
-                    
-                    tableView.reloadData()
-                    
-                }else {
-                    print("STATUSCODE : \(statusCode)")
-                }
-            case .failure(let error):
-                print(error)
+                castList.append(CastInfo(name: name, character: character, profileURL: profileURL))
             }
+            
+            json["crew"].arrayValue.forEach {
+                let name = $0["name"].stringValue
+                let department = $0["department"].stringValue
+                let profileURL = $0["profile_path"].string
+                
+                crewList.append(CrewInfo(name: name, department: department, profileURL: profileURL))
+            }
+            
+            tableView.reloadData()
         }
     }
 }
