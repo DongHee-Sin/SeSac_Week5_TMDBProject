@@ -22,7 +22,7 @@ class APIManager {
     
     func requestAPI(url: String, completionHandler: @escaping CompletionHandler) {
         
-        AF.request(url, method: .get).validate(statusCode: 200...500).responseData { response in
+        AF.request(url, method: .get).validate(statusCode: 200...500).responseData(queue: .global()) { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)

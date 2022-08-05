@@ -78,7 +78,9 @@ class MediaInfoViewController: UIViewController, CommonSetting {
                 crewList.append(CrewInfo(name: name, department: department, profileURL: profileURL))
             }
             
-            tableView.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
         }
     }
 }

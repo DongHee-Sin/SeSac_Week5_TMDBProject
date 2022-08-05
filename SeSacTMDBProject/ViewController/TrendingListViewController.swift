@@ -112,7 +112,9 @@ class TrendingListViewController: UIViewController, CommonSetting {
             totalPage = json["total_pages"].intValue
             startPage += 1
             
-            collectionView.reloadData()
+            DispatchQueue.main.async { [unowned self] in
+                collectionView.reloadData()
+            }
         }
     }
     
