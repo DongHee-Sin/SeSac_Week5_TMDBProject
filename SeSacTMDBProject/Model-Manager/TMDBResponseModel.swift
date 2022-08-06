@@ -37,10 +37,22 @@ struct TMDBDataManager {
         mediaList.append(newData)
     }
     
-    func getMediaData(at index: Int) -> TMDBMedia {
+    func getMediaData(at index: Int, searchWord: String) -> TMDBMedia {
         guard index < mediaList.count else { return TMDBMedia(id: 0, title: "", overView: "", releaseDate: "", genres: "", grade: 0, backgroundImageURL: "", posterImageURL: "") }
         
-        return mediaList[index]
+        if searchWord == "" {
+            return mediaList[index]
+        }else {
+            return mediaList.filter { $0.title == searchWord }[index]
+        }
+    }
+    
+    func getMediaDataCount(searchWord: String) -> Int {
+        if searchWord == "" {
+            return mediaList.count
+        }else {
+            return mediaList.filter { $0.title == searchWord }.count
+        }
     }
     
     mutating func addGenres(key: Int, genre: String) {

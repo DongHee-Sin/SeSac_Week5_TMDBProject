@@ -31,6 +31,8 @@ class TrendingListViewController: UIViewController, CommonSetting {
     var totalPage = 0
     var startPage = 1
     
+    var searchWord: String = ""
+    
     
     
     // MARK: - Outlet
@@ -68,6 +70,9 @@ class TrendingListViewController: UIViewController, CommonSetting {
     
     func setSearchController() {
         let searchController = UISearchController(searchResultsController: nil)
+        
+        searchController.searchResultsUpdater = self
+        
         self.navigationItem.searchController = searchController
     }
     
@@ -111,7 +116,6 @@ class TrendingListViewController: UIViewController, CommonSetting {
             
             totalPage = json["total_pages"].intValue
             startPage += 1
-            
             DispatchQueue.main.async { [unowned self] in
                 collectionView.reloadData()
             }
@@ -154,7 +158,7 @@ extension TrendingListViewController: UICollectionViewDelegate, UICollectionView
             return UICollectionViewCell()
         }
         
-        let mediaData = mediaDataManager.getMediaData(at: indexPath.row)
+        let mediaData = mediaDataManager.getMediaData(at: indexPath.row, searchWord: searchWord)
         
         cell.mediaID = mediaData.id
         cell.delegate = self
@@ -164,7 +168,7 @@ extension TrendingListViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return mediaDataManager.count
+        return mediaDataManager.getMediaDataCount(searchWord: searchWord)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -172,7 +176,7 @@ extension TrendingListViewController: UICollectionViewDelegate, UICollectionView
             return
         }
         
-        vc.media = mediaDataManager.getMediaData(at: indexPath.row)
+        vc.media = mediaDataManager.getMediaData(at: indexPath.row, searchWord: searchWord)
         
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -218,5 +222,15 @@ extension TrendingListViewController: UICollectionViewDataSourcePrefetching {
 extension TrendingListViewController: WebViewButtonDelegate {
     func webViewButtonTapped(mediaID: Int) {
         requestYoutubeLink(mediaID: mediaID)
+    }
+}
+
+
+
+// MARK: - SearchController
+extension TrendingListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        searchWord = searchController.searchBar.text ?? ""
+        collectionView.reloadData()
     }
 }
