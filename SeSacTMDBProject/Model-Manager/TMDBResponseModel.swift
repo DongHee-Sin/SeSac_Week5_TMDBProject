@@ -24,7 +24,9 @@ struct TMDBMedia {
 struct TMDBDataManager {
     
     // MARK: - Propertys
-    private var mediaList: [TMDBMedia] = []
+    private var mediaList: [TMDBMedia] = [] {
+        didSet { updateSearchResultList() }
+    }
     private var searchResultList: [TMDBMedia] = []
     
     private var genresDictionary: [Int: String] = [:]
@@ -34,13 +36,7 @@ struct TMDBDataManager {
     }
     
     var searchWord: String = "" {
-        didSet {
-            if searchWord != "" {
-                searchResultList = mediaList.filter { $0.title == searchWord }
-            }else {
-                searchResultList.removeAll()
-            }
-        }
+        didSet { updateSearchResultList() }
     }
     
     
@@ -68,8 +64,15 @@ struct TMDBDataManager {
         return genresDictionary[key] ?? ""
     }
     
-    
     mutating func removeAllData() {
         mediaList.removeAll()
+    }
+    
+    mutating func updateSearchResultList() {
+        if searchWord != "" {
+            searchResultList = mediaList.filter { $0.title.lowercased().contains(searchWord.lowercased()) }
+        }else {
+            searchResultList.removeAll()
+        }
     }
 }
