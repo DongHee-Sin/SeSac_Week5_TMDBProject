@@ -25,10 +25,23 @@ struct TMDBDataManager {
     
     // MARK: - Propertys
     private var mediaList: [TMDBMedia] = []
+    private var searchResultList: [TMDBMedia] = []
     
     private var genresDictionary: [Int: String] = [:]
     
-    var count: Int { mediaList.count }
+    var count: Int {
+        return searchWord == "" ? mediaList.count : searchResultList.count
+    }
+    
+    var searchWord: String = "" {
+        didSet {
+            if searchWord != "" {
+                searchResultList = mediaList.filter { $0.title == searchWord }
+            }else {
+                searchResultList.removeAll()
+            }
+        }
+    }
     
     
     
@@ -37,21 +50,13 @@ struct TMDBDataManager {
         mediaList.append(newData)
     }
     
-    func getMediaData(at index: Int, searchWord: String) -> TMDBMedia {
+    func getMediaData(at index: Int) -> TMDBMedia {
         guard index < mediaList.count else { return TMDBMedia(id: 0, title: "", overView: "", releaseDate: "", genres: "", grade: 0, backgroundImageURL: "", posterImageURL: "") }
         
         if searchWord == "" {
             return mediaList[index]
         }else {
-            return mediaList.filter { $0.title == searchWord }[index]
-        }
-    }
-    
-    func getMediaDataCount(searchWord: String) -> Int {
-        if searchWord == "" {
-            return mediaList.count
-        }else {
-            return mediaList.filter { $0.title == searchWord }.count
+            return searchResultList[index]
         }
     }
     

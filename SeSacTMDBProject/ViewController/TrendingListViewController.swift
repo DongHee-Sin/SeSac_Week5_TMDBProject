@@ -31,8 +31,6 @@ class TrendingListViewController: UIViewController, CommonSetting {
     var totalPage = 0
     var startPage = 1
     
-    var searchWord: String = ""
-    
     
     
     // MARK: - Outlet
@@ -158,7 +156,7 @@ extension TrendingListViewController: UICollectionViewDelegate, UICollectionView
             return UICollectionViewCell()
         }
         
-        let mediaData = mediaDataManager.getMediaData(at: indexPath.row, searchWord: searchWord)
+        let mediaData = mediaDataManager.getMediaData(at: indexPath.row)
         
         cell.mediaID = mediaData.id
         cell.delegate = self
@@ -168,7 +166,7 @@ extension TrendingListViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return mediaDataManager.getMediaDataCount(searchWord: searchWord)
+        return mediaDataManager.count
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -176,7 +174,7 @@ extension TrendingListViewController: UICollectionViewDelegate, UICollectionView
             return
         }
         
-        vc.media = mediaDataManager.getMediaData(at: indexPath.row, searchWord: searchWord)
+        vc.media = mediaDataManager.getMediaData(at: indexPath.row)
         
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -230,7 +228,7 @@ extension TrendingListViewController: WebViewButtonDelegate {
 // MARK: - SearchController
 extension TrendingListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        searchWord = searchController.searchBar.text ?? ""
+        mediaDataManager.searchWord = searchController.searchBar.text ?? ""
         collectionView.reloadData()
     }
 }
