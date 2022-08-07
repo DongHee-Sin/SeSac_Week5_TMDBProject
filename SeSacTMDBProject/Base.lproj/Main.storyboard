@@ -70,20 +70,53 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i5O-fu-SVw">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7gj-4W-d5W">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <items>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="GyE-qC-vVe"/>
+                                    <barButtonItem image="xmark" catalog="system" id="LAu-ta-P8j">
+                                        <connections>
+                                            <action selector="dismissButtonTapped:" destination="cIb-Qv-rSE" id="clp-R2-Cx7"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="5r3-jU-gFL"/>
+                                    <barButtonItem image="arrow.backward" catalog="system" id="0m7-VK-wSS">
+                                        <connections>
+                                            <action selector="backButtonTapped:" destination="cIb-Qv-rSE" id="6JB-nB-s9L"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="QR3-Qa-NCE"/>
+                                    <barButtonItem image="arrow.clockwise" catalog="system" id="byX-9C-wDC">
+                                        <connections>
+                                            <action selector="reloadButtonTapped:" destination="cIb-Qv-rSE" id="cnf-7X-s6R"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="hCw-nG-ZGb"/>
+                                    <barButtonItem image="arrow.forward" catalog="system" id="M4r-71-zBF">
+                                        <connections>
+                                            <action selector="forwardButtonTapped:" destination="cIb-Qv-rSE" id="i33-6G-AIU"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="h9J-8B-L7A"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FbP-nu-AHx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="7gj-4W-d5W" firstAttribute="trailing" secondItem="FbP-nu-AHx" secondAttribute="trailing" id="Fhn-Zv-wBo"/>
                             <constraint firstItem="FbP-nu-AHx" firstAttribute="trailing" secondItem="i5O-fu-SVw" secondAttribute="trailing" id="GsO-mC-6eA"/>
-                            <constraint firstItem="FbP-nu-AHx" firstAttribute="bottom" secondItem="i5O-fu-SVw" secondAttribute="bottom" id="UnT-bG-VTH"/>
                             <constraint firstItem="i5O-fu-SVw" firstAttribute="top" secondItem="FbP-nu-AHx" secondAttribute="top" id="Ztz-EI-RO2"/>
+                            <constraint firstItem="7gj-4W-d5W" firstAttribute="top" secondItem="i5O-fu-SVw" secondAttribute="bottom" id="eNG-dW-ojy"/>
+                            <constraint firstItem="7gj-4W-d5W" firstAttribute="leading" secondItem="FbP-nu-AHx" secondAttribute="leading" id="nM1-bH-F92"/>
+                            <constraint firstItem="FbP-nu-AHx" firstAttribute="bottom" secondItem="7gj-4W-d5W" secondAttribute="bottom" id="ntm-d1-yeg"/>
                             <constraint firstItem="i5O-fu-SVw" firstAttribute="leading" secondItem="FbP-nu-AHx" secondAttribute="leading" id="zRB-p4-yba"/>
                         </constraints>
                     </view>
@@ -93,7 +126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yzq-US-ZqB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2012" y="539"/>
+            <point key="canvasLocation" x="2011.594202898551" y="538.39285714285711"/>
         </scene>
         <!--Media Info View Controller-->
         <scene sceneID="bKV-Io-eki">
@@ -145,7 +178,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.backward" catalog="system" width="128" height="98"/>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
+        <image name="arrow.forward" catalog="system" width="128" height="98"/>
         <image name="line.3.horizontal" catalog="system" width="128" height="64"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

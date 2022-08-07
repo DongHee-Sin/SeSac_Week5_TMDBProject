@@ -49,4 +49,29 @@ class WebViewController: UIViewController, CommonSetting {
         alertController.addAction(alertAction)
         present(alertController, animated: true)
     }
+    
+    
+    @IBAction func dismissButtonTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
+    }
+    
+    
+    @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
+        if webView.canGoBack {
+            webView.goBack()
+        }
+    }
+    
+    
+    @IBAction func reloadButtonTapped(_ sender: UIBarButtonItem) {
+        webView.reload()
+    }
+    
+    
+    @IBAction func forwardButtonTapped(_ sender: UIBarButtonItem) {
+        if webView.canGoForward {
+            webView.goForward()
+        }
+    }
+    
 }
