@@ -20,4 +20,6 @@ struct EndPoint {
     static let webViewRequestEndpoint = "https://api.themoviedb.org/3/movie/"
     
     static let youtubeEndPoint = "https://www.youtube.com/watch?v="
+    
+    private init() {}
 }
