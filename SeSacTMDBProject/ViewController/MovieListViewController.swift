@@ -30,13 +30,18 @@ class MovieListViewController: UIViewController, CommonSetting {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: MovieListTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MovieListTableViewCell.identifier)
+        
+        configureInitialUI()
     }
     
 
     
     // MARK: - Methods
     func configureInitialUI() {
-        
+        view.backgroundColor = .black
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
     }
 }
 
@@ -49,13 +54,42 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return someData[section].count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieListTableViewCell.identifier, for: indexPath) as? MovieListTableViewCell else {
             return UITableViewCell()
         }
+        
+        cell.collectionView.delegate = self
+        cell.collectionView.dataSource = self
+        cell.collectionView.register(UINib(nibName: MovieListCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MovieListCollectionViewCell.identifier)
+
+        cell.collectionView.tag = indexPath.section
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UIScreen.main.bounds.width * 0.5
+    }
+}
+
+
+
+// MARK: - CollectionView Protocol
+extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return someData[collectionView.tag].count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieListCollectionViewCell.identifier, for: indexPath) as? MovieListCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+
+        cell.posterView.titleLabel.text = "\(someData[collectionView.tag][indexPath.row])"
         
         return cell
     }
