@@ -91,6 +91,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D03BDBA028A3B5ED00AE77D4 /* DetailVC */ = {
+			isa = PBXGroup;
+			children = (
+				D0B5B2C3289BC90A0013E171 /* PersonInfoCell */,
+				D0EA8FFB289C235D00FC69BA /* MediaOverViewCell */,
+				D0B5B2D2289BD0650013E171 /* MediaInfoHeader */,
+			);
+			path = DetailVC;
+			sourceTree = "<group>";
+		};
 		D0420D1C28A2886E00EC2181 /* PosterXibView */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,9 +206,7 @@
 				D0420D1C28A2886E00EC2181 /* PosterXibView */,
 				D0EB828828A2766900FDEEA7 /* MovieList (TableView, CollectionView) */,
 				D07CD997289A5FDD00FAA826 /* SearchResultCell */,
-				D0B5B2C3289BC90A0013E171 /* PersonInfoCell */,
-				D0EA8FFB289C235D00FC69BA /* MediaOverViewCell */,
-				D0B5B2D2289BD0650013E171 /* MediaInfoHeader */,
+				D03BDBA028A3B5ED00AE77D4 /* DetailVC */,
 			);
 			path = XIB;
 			sourceTree = "<group>";

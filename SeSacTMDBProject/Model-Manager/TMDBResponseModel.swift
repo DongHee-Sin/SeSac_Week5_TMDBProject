@@ -21,7 +21,10 @@ struct TMDBMedia {
 
 
 
-struct TMDBDataManager {
+class TMDBDataManager {
+    
+    static let shared = TMDBDataManager()
+    private init() {}
     
     // MARK: - Propertys
     private var mediaList: [TMDBMedia] = [] {
@@ -42,7 +45,7 @@ struct TMDBDataManager {
     
     
     // MARK: - Methdos    
-    mutating func addMediaData(newData: TMDBMedia) {
+    func addMediaData(newData: TMDBMedia) {
         mediaList.append(newData)
     }
     
@@ -56,7 +59,7 @@ struct TMDBDataManager {
         }
     }
     
-    mutating func addGenres(key: Int, genre: String) {
+    func addGenres(key: Int, genre: String) {
         genresDictionary[key] = genre
     }
     
@@ -64,11 +67,11 @@ struct TMDBDataManager {
         return genresDictionary[key] ?? ""
     }
     
-    mutating func removeAllData() {
+    func removeAllData() {
         mediaList.removeAll()
     }
     
-    mutating func updateSearchResultList() {
+    func updateSearchResultList() {
         if searchWord != "" {
             searchResultList = mediaList.filter { $0.title.lowercased().contains(searchWord.lowercased()) }
         }else {

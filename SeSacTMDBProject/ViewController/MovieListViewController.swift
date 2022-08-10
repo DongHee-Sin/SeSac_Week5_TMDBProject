@@ -68,6 +68,8 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
 
         cell.collectionView.tag = indexPath.section
         
+        cell.collectionView.reloadData()
+        
         return cell
     }
     

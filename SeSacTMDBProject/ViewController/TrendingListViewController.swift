@@ -26,7 +26,7 @@ class TrendingListViewController: UIViewController, CommonSetting {
     static let identifier: String = String(describing: TrendingListViewController.self)
     
     // MARK: - Propertys
-    var mediaDataManager = TMDBDataManager()
+    var mediaDataManager = TMDBDataManager.shared
     
     var totalPage = 0
     var startPage = 1

@@ -21,5 +21,7 @@ struct EndPoint {
     
     static let youtubeEndPoint = "https://www.youtube.com/watch?v="
     
+    static let recommendMovieEndPoint = "https://api.themoviedb.org/3/movie/{movie_id}/recommendations?api_key=<<api_key>>&language=en-US&page=1"
+    
     private init() {}
 }
