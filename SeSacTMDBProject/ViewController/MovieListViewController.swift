@@ -35,6 +35,8 @@ class MovieListViewController: UIViewController, CommonSetting {
         tableView.register(UINib(nibName: MovieListTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MovieListTableViewCell.identifier)
         
         configureInitialUI()
+        
+        
     }
     
 
@@ -45,6 +47,11 @@ class MovieListViewController: UIViewController, CommonSetting {
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
+    }
+    
+    
+    func requestRecommendMovieInfo(id: Int) {
+        let url = EndPoint.recommendMovieEndPoint + "{movie_id}/recommendations?api_key=<<api_key>>&language=en-US&page=1"
     }
 }
 

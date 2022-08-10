@@ -42,17 +42,21 @@ class TMDBDataManager {
         didSet { updateSearchResultList() }
     }
     
-    private var _interestMovieList: Set<String> = [] {
-        didSet { if _interestMovieList.count > 7 { _interestMovieList.removeFirst() } }
-    }
-    var interestMovieList: [String] {
-        if _interestMovieList.count == 7 { return Array(_interestMovieList) }
-        
-        var titleSet = _interestMovieList
-        while titleSet.count < 7 {
-            if let title = mediaList.randomElement()?.title { titleSet.insert(title) }
+    var sawMovies: [Int: String] = [:] {
+        didSet {
+            if sawMovies.count > 7 {
+                sawMovies[sawMovies.keys.randomElement()!] = nil
+            }
         }
-        return Array(titleSet)
+    }
+    var interestMovieList: [Int: String] {
+        if sawMovies.count == 7 { return sawMovies }
+
+        var resultDic = sawMovies
+        while resultDic.count < 7 {
+            if let media = mediaList.randomElement() { resultDic[media.id] = media.title }
+        }
+        return resultDic
     }
     
     
@@ -90,9 +94,5 @@ class TMDBDataManager {
         }else {
             searchResultList.removeAll()
         }
-    }
-    
-    func sawMovieInfo(title: String) {
-        _interestMovieList.insert(title)
     }
 }

@@ -9,19 +9,21 @@ import Foundation
 
 struct EndPoint {
     
+    private static let commonEndPoint = "https://api.themoviedb.org/3/"
+    
     static let TMDBImagePathEndPoint = "https://image.tmdb.org/t/p/w500"
     
-    static let TMDBEndPoint = "https://api.themoviedb.org/3/trending/"
+    static let TMDBEndPoint = "\(commonEndPoint)trending/"
     
-    static let GenreURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=\(APIKeys.TMDBKEY)&language=en-US"
+    static let GenreURL = "\(commonEndPoint)genre/movie/list?api_key=\(APIKeys.TMDBKEY)&language=en-US"
     
-    static let MediaInfoEndPoint = "https://api.themoviedb.org/3/movie/"
+    static let MediaInfoEndPoint = "\(commonEndPoint)movie/"
     
-    static let webViewRequestEndpoint = "https://api.themoviedb.org/3/movie/"
+    static let webViewRequestEndpoint = "\(commonEndPoint)movie/"
     
     static let youtubeEndPoint = "https://www.youtube.com/watch?v="
     
-    static let recommendMovieEndPoint = "https://api.themoviedb.org/3/movie/{movie_id}/recommendations?api_key=<<api_key>>&language=en-US&page=1"
+    static let recommendMovieEndPoint = "\(commonEndPoint)movie/"
     
     private init() {}
 }
