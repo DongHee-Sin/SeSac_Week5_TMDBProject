@@ -27,8 +27,11 @@ class MovieListViewController: UIViewController, CommonSetting {
     var recommendMovieList: [(String, [RecommendMovie])] = [] {
         didSet {
             if recommendMovieList.count == 10 {
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                DispatchQueue.main.async { [unowned self] in
+                    recommendMovieList = recommendMovieList.filter { (title, list) in
+                        !list.isEmpty
+                    }
+                    tableView.reloadData()
                 }
             }
         }
