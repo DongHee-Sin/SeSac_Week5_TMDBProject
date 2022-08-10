@@ -174,7 +174,9 @@ extension TrendingListViewController: UICollectionViewDelegate, UICollectionView
             return
         }
         
-        vc.media = mediaDataManager.getMediaData(at: indexPath.row)
+        let movieData = mediaDataManager.getMediaData(at: indexPath.row)
+        vc.media = movieData
+        mediaDataManager.sawMovieInfo(title: movieData.title)
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

@@ -40,6 +40,7 @@
 		D0EB828728A273C400FDEEA7 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EB828628A273C400FDEEA7 /* MovieListViewController.swift */; };
 		D0EB828D28A2769B00FDEEA7 /* MovieListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EB828B28A2769B00FDEEA7 /* MovieListTableViewCell.swift */; };
 		D0EB828E28A2769B00FDEEA7 /* MovieListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0EB828C28A2769B00FDEEA7 /* MovieListTableViewCell.xib */; };
+		D0F89CD528A3E42300CAC1DE /* RecommendMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F89CD428A3E42300CAC1DE /* RecommendMovie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		D0EB828628A273C400FDEEA7 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		D0EB828B28A2769B00FDEEA7 /* MovieListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListTableViewCell.swift; sourceTree = "<group>"; };
 		D0EB828C28A2769B00FDEEA7 /* MovieListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieListTableViewCell.xib; sourceTree = "<group>"; };
+		D0F89CD428A3E42300CAC1DE /* RecommendMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendMovie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 				D07CD99D289A678800FAA826 /* TMDBResponseModel.swift */,
 				D0B5B2CE289BCF040013E171 /* PersonInfoModel.swift */,
 				D0501309289D50D1002607F0 /* APIManager.swift */,
+				D0F89CD428A3E42300CAC1DE /* RecommendMovie.swift */,
 			);
 			path = "Model-Manager";
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				D0EA9002289C30D100FC69BA /* CommonSettingProtocol.swift in Sources */,
 				D0EA8FFE289C237B00FC69BA /* OverViewTableViewCell.swift in Sources */,
 				D0EB828D28A2769B00FDEEA7 /* MovieListTableViewCell.swift in Sources */,
+				D0F89CD528A3E42300CAC1DE /* RecommendMovie.swift in Sources */,
 				D0B5B2CC289BCDBD0013E171 /* PersonInfoTableViewCell.swift in Sources */,
 				D064A46A2899F6C8000FC6A9 /* AppDelegate.swift in Sources */,
 				D07CD98F289A5DBF00FAA826 /* EndPoint.swift in Sources */,

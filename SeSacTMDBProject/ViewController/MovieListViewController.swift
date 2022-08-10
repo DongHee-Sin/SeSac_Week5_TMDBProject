@@ -22,6 +22,9 @@ class MovieListViewController: UIViewController, CommonSetting {
         [Int](6...16)
     ]
     
+    var recommendMovieList: [String: [RecommendMovie]] = [:]
+    
+    
     
     // MARK: - View Did Load
     override func viewDidLoad() {
