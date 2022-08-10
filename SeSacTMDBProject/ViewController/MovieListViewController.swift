@@ -134,7 +134,7 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
 
         let urlString = EndPoint.TMDBImagePathEndPoint + recommendMovieList[collectionView.tag].1[indexPath.item].posterURL
         let url = URL(string: urlString)
-        cell.posterView.posterImage.kf.setImage(with: url)
+        cell.posterView.posterImage.kf.setImage(with: url, placeholder: UIImage(systemName: "star"))
         
         return cell
     }
