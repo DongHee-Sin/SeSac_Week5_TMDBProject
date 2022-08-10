@@ -22,6 +22,6 @@ class MovieListCollectionViewCell: UICollectionViewCell, CommonSetting {
 
     
     func configureInitialUI() {
-        posterView.posterImage.image = UIImage(named: "한산")
+        posterView.posterImage.contentMode = .scaleAspectFill
     }
 }

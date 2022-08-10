@@ -10,7 +10,6 @@ import UIKit
 class PosterView: UIView {
 
     @IBOutlet weak var posterImage: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
     
     
     override func awakeFromNib() {

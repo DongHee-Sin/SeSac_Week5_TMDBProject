@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Kingfisher
+
 class MovieListViewController: UIViewController, CommonSetting {
     
     static let identifier = String(describing: MovieListViewController.self)
@@ -22,7 +24,15 @@ class MovieListViewController: UIViewController, CommonSetting {
         [Int](6...16)
     ]
     
-    var recommendMovieList: [String: [RecommendMovie]] = [:]
+    var recommendMovieList: [(String, [RecommendMovie])] = [] {
+        didSet {
+            if recommendMovieList.count == 10 {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
     
     
     
@@ -36,7 +46,9 @@ class MovieListViewController: UIViewController, CommonSetting {
         
         configureInitialUI()
         
-        
+        TMDBDataManager.shared.interestMovieList.forEach { (id, title) in
+            requestRecommendMovieInfo(id: id, title: title)
+        }
     }
     
 
@@ -50,8 +62,22 @@ class MovieListViewController: UIViewController, CommonSetting {
     }
     
     
-    func requestRecommendMovieInfo(id: Int) {
-        let url = EndPoint.recommendMovieEndPoint + "{movie_id}/recommendations?api_key=<<api_key>>&language=en-US&page=1"
+    func requestRecommendMovieInfo(id: Int, title: String) {
+        let url = EndPoint.recommendMovieEndPoint + "\(id)/recommendations?api_key=\(APIKeys.TMDBKEY)&language=en-US&page=1"
+        
+        APIManager.shared.requestAPI(url: url) { [unowned self] json in
+            
+            var list: [RecommendMovie] = []
+            
+            json["results"].arrayValue.forEach { movie in
+                let title = movie["title"].stringValue
+                let posterURL = movie["poster_path"].stringValue
+                
+                list.append(RecommendMovie(title: title, posterURL: posterURL))
+            }
+            
+            recommendMovieList.append((title, list))
+        }
     }
 }
 
@@ -60,7 +86,7 @@ class MovieListViewController: UIViewController, CommonSetting {
 // MARK: - TableView Protocol
 extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return someData.count
+        return recommendMovieList.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -71,6 +97,8 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieListTableViewCell.identifier, for: indexPath) as? MovieListTableViewCell else {
             return UITableViewCell()
         }
+        
+        cell.titleLabel.text = recommendMovieList[indexPath.section].0 + " 관련 영화"
         
         cell.collectionView.delegate = self
         cell.collectionView.dataSource = self
@@ -93,7 +121,7 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - CollectionView Protocol
 extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return someData[collectionView.tag].count
+        return recommendMovieList[collectionView.tag].1.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -101,7 +129,9 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
             return UICollectionViewCell()
         }
 
-        cell.posterView.titleLabel.text = "\(someData[collectionView.tag][indexPath.row])"
+        let urlString = EndPoint.TMDBImagePathEndPoint + recommendMovieList[collectionView.tag].1[indexPath.item].posterURL
+        let url = URL(string: urlString)
+        cell.posterView.posterImage.kf.setImage(with: url)
         
         return cell
     }

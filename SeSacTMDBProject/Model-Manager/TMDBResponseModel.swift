@@ -42,21 +42,18 @@ class TMDBDataManager {
         didSet { updateSearchResultList() }
     }
     
-    var sawMovies: [Int: String] = [:] {
+    var sawMovies: [(Int, String)] = [] {
         didSet {
-            if sawMovies.count > 7 {
-                sawMovies[sawMovies.keys.randomElement()!] = nil
+            if sawMovies.count > 10 {
+                sawMovies.removeFirst()
             }
         }
     }
-    var interestMovieList: [Int: String] {
-        if sawMovies.count == 7 { return sawMovies }
-
-        var resultDic = sawMovies
-        while resultDic.count < 7 {
-            if let media = mediaList.randomElement() { resultDic[media.id] = media.title }
+    var interestMovieList: [(Int, String)] {
+        while sawMovies.count < 10 {
+            if let media = mediaList.randomElement() { sawMovies.append((media.id, media.title)) }
         }
-        return resultDic
+        return sawMovies
     }
     
     

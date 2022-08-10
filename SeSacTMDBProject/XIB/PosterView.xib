@@ -11,7 +11,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PosterView" customModule="SeSacTMDBProject" customModuleProvider="target">
             <connections>
                 <outlet property="posterImage" destination="K7s-6b-L3P" id="8aD-EN-Kfb"/>
-                <outlet property="titleLabel" destination="IJh-d6-MUD" id="KZp-JD-yac"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -22,20 +21,11 @@
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K7s-6b-L3P">
                     <rect key="frame" x="0.0" y="0.0" width="264" height="325"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJh-d6-MUD">
-                    <rect key="frame" x="111" y="152" width="42" height="21"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="K7s-6b-L3P" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="57c-3g-Uis"/>
                 <constraint firstAttribute="trailing" secondItem="K7s-6b-L3P" secondAttribute="trailing" id="6yX-N9-yHE"/>
-                <constraint firstItem="IJh-d6-MUD" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Gdm-yS-n4b"/>
-                <constraint firstItem="IJh-d6-MUD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="L2e-jk-5gx"/>
                 <constraint firstItem="K7s-6b-L3P" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="L8t-Nv-iew"/>
                 <constraint firstAttribute="bottom" secondItem="K7s-6b-L3P" secondAttribute="bottom" id="rZY-ki-2XL"/>
             </constraints>
