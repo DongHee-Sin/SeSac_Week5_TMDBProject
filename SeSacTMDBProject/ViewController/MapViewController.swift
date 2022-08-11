@@ -34,6 +34,19 @@ class MapViewController: UIViewController, CommonSetting {
     // MARK: - Methods
     func configureInitialUI() {
         locationManager.delegate = self
+        
+        setNavigationBarButton()
+    }
+    
+    
+    func setNavigationBarButton() {
+        let dismissButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(dismissButtonTapped))
+        dismissButton.tintColor = .darkGray
+        self.navigationItem.leftBarButtonItem = dismissButton
+    }
+    
+    @objc func dismissButtonTapped() {
+        dismiss(animated: true)
     }
 }
 

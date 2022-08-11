@@ -93,10 +93,11 @@ class TrendingListViewController: UIViewController, CommonSetting {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: MapViewController.identifier) as? MapViewController else {
             return
         }
+                
+        let navi = UINavigationController(rootViewController: vc)
+        navi.modalPresentationStyle = .fullScreen
         
-        vc.modalPresentationStyle = .fullScreen
-        
-        present(vc, animated: true)
+        present(navi, animated: true)
     }
     
     
