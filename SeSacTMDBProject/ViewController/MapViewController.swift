@@ -38,6 +38,10 @@ class MapViewController: UIViewController, CommonSetting {
         setNavigationBarButton()
         
         setRegion(center: sesacCoordinate)
+        TheaterList().mapAnnotations.forEach { theater in
+            let coordinate = CLLocationCoordinate2D(latitude: theater.latitude, longitude: theater.longitude)
+            setAnnotation(title: theater.type, subTitle: theater.location, coordinate: coordinate)
+        }
     }
     
     
@@ -66,6 +70,16 @@ extension MapViewController {
         mapView.setRegion(region, animated: true)
     }
     
+    
+    // map에 핀(annotation) 추가
+    func setAnnotation(title: String?, subTitle: String?, coordinate: CLLocationCoordinate2D) {
+        let annotation = MKPointAnnotation()
+        annotation.title = title
+        annotation.subtitle = subTitle
+        annotation.coordinate = coordinate
+        
+        mapView.addAnnotation(annotation)
+    }
 }
 
 
