@@ -34,13 +34,15 @@
 		D0B5B2D1289BD0620013E171 /* MediaInfoTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B5B2D0289BD0620013E171 /* MediaInfoTableViewHeader.swift */; };
 		D0B5B2D4289BD0800013E171 /* MediaInfoTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B5B2D3289BD0800013E171 /* MediaInfoTableViewHeader.xib */; };
 		D0C7FD74289BF324004EE566 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D0C7FD73289BF324004EE566 /* Kingfisher */; };
+		D0DBA4CE28A4EF5000E080C6 /* TheaterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DBA4CD28A4EF5000E080C6 /* TheaterModel.swift */; };
+		D0DBA4D028A4F00800E080C6 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DBA4CF28A4F00800E080C6 /* MapViewController.swift */; };
 		D0EA8FFE289C237B00FC69BA /* OverViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EA8FFC289C237B00FC69BA /* OverViewTableViewCell.swift */; };
 		D0EA8FFF289C237B00FC69BA /* OverViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0EA8FFD289C237B00FC69BA /* OverViewTableViewCell.xib */; };
 		D0EA9002289C30D100FC69BA /* CommonSettingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EA9001289C30D100FC69BA /* CommonSettingProtocol.swift */; };
 		D0EB828728A273C400FDEEA7 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EB828628A273C400FDEEA7 /* MovieListViewController.swift */; };
 		D0EB828D28A2769B00FDEEA7 /* MovieListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EB828B28A2769B00FDEEA7 /* MovieListTableViewCell.swift */; };
 		D0EB828E28A2769B00FDEEA7 /* MovieListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0EB828C28A2769B00FDEEA7 /* MovieListTableViewCell.xib */; };
-		D0F89CD528A3E42300CAC1DE /* RecommendMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F89CD428A3E42300CAC1DE /* RecommendMovie.swift */; };
+		D0F89CD528A3E42300CAC1DE /* RecommendMovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F89CD428A3E42300CAC1DE /* RecommendMovieModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,13 +72,15 @@
 		D0B5B2CE289BCF040013E171 /* PersonInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoModel.swift; sourceTree = "<group>"; };
 		D0B5B2D0289BD0620013E171 /* MediaInfoTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaInfoTableViewHeader.swift; sourceTree = "<group>"; };
 		D0B5B2D3289BD0800013E171 /* MediaInfoTableViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaInfoTableViewHeader.xib; sourceTree = "<group>"; };
+		D0DBA4CD28A4EF5000E080C6 /* TheaterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterModel.swift; sourceTree = "<group>"; };
+		D0DBA4CF28A4F00800E080C6 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D0EA8FFC289C237B00FC69BA /* OverViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverViewTableViewCell.swift; sourceTree = "<group>"; };
 		D0EA8FFD289C237B00FC69BA /* OverViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverViewTableViewCell.xib; sourceTree = "<group>"; };
 		D0EA9001289C30D100FC69BA /* CommonSettingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonSettingProtocol.swift; sourceTree = "<group>"; };
 		D0EB828628A273C400FDEEA7 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		D0EB828B28A2769B00FDEEA7 /* MovieListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListTableViewCell.swift; sourceTree = "<group>"; };
 		D0EB828C28A2769B00FDEEA7 /* MovieListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieListTableViewCell.xib; sourceTree = "<group>"; };
-		D0F89CD428A3E42300CAC1DE /* RecommendMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendMovie.swift; sourceTree = "<group>"; };
+		D0F89CD428A3E42300CAC1DE /* RecommendMovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendMovieModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,7 +191,8 @@
 				D07CD99D289A678800FAA826 /* TMDBResponseModel.swift */,
 				D0B5B2CE289BCF040013E171 /* PersonInfoModel.swift */,
 				D0501309289D50D1002607F0 /* APIManager.swift */,
-				D0F89CD428A3E42300CAC1DE /* RecommendMovie.swift */,
+				D0F89CD428A3E42300CAC1DE /* RecommendMovieModel.swift */,
+				D0DBA4CD28A4EF5000E080C6 /* TheaterModel.swift */,
 			);
 			path = "Model-Manager";
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 				D0B5B2C0289BC6430013E171 /* MediaInfoViewController.swift */,
 				D07D4F32289D348D00602949 /* WebViewController.swift */,
 				D0EB828628A273C400FDEEA7 /* MovieListViewController.swift */,
+				D0DBA4CF28A4F00800E080C6 /* MapViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -372,9 +378,11 @@
 				D0EB828728A273C400FDEEA7 /* MovieListViewController.swift in Sources */,
 				D07CD99E289A678800FAA826 /* TMDBResponseModel.swift in Sources */,
 				D0EA9002289C30D100FC69BA /* CommonSettingProtocol.swift in Sources */,
+				D0DBA4CE28A4EF5000E080C6 /* TheaterModel.swift in Sources */,
 				D0EA8FFE289C237B00FC69BA /* OverViewTableViewCell.swift in Sources */,
 				D0EB828D28A2769B00FDEEA7 /* MovieListTableViewCell.swift in Sources */,
-				D0F89CD528A3E42300CAC1DE /* RecommendMovie.swift in Sources */,
+				D0F89CD528A3E42300CAC1DE /* RecommendMovieModel.swift in Sources */,
+				D0DBA4D028A4F00800E080C6 /* MapViewController.swift in Sources */,
 				D0B5B2CC289BCDBD0013E171 /* PersonInfoTableViewCell.swift in Sources */,
 				D064A46A2899F6C8000FC6A9 /* AppDelegate.swift in Sources */,
 				D07CD98F289A5DBF00FAA826 /* EndPoint.swift in Sources */,

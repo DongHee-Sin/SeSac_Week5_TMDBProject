@@ -15,7 +15,7 @@ class MediaInfoViewController: UIViewController, CommonSetting {
 
     static let identifier: String = String(describing: MediaInfoViewController.self)
     
-    // MARK: - Propertys
+    // MARK: - Propertys & Outlet
     var media: TMDBMedia?
     
     var castList: [CastInfo] = []
@@ -23,9 +23,6 @@ class MediaInfoViewController: UIViewController, CommonSetting {
     
     var isOverViewExtended: Bool = false
     
-    
-    
-    // MARK: - Outlet
     @IBOutlet weak var tableView: UITableView!
     
     

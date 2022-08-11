@@ -25,15 +25,12 @@ class TrendingListViewController: UIViewController, CommonSetting {
     
     static let identifier: String = String(describing: TrendingListViewController.self)
     
-    // MARK: - Propertys
+    // MARK: - Propertys & Outlet
     var mediaDataManager = TMDBDataManager.shared
     
     var totalPage = 0
     var startPage = 1
     
-    
-    
-    // MARK: - Outlet
     @IBOutlet weak var collectionView: UICollectionView!
     
     
@@ -90,6 +87,18 @@ class TrendingListViewController: UIViewController, CommonSetting {
         
         present(webVC, animated: true)
     }
+    
+    
+    @IBAction func showMapButtonTapped(_ sender: UIBarButtonItem) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: MapViewController.identifier) as? MapViewController else {
+            return
+        }
+        
+        vc.modalPresentationStyle = .fullScreen
+        
+        present(vc, animated: true)
+    }
+    
     
     
     // MARK: - Network

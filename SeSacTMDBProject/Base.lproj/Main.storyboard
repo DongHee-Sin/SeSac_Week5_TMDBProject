@@ -71,6 +71,12 @@
                         <barButtonItem key="leftBarButtonItem" image="line.3.horizontal" catalog="system" id="9Pj-ln-A5c">
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="map" catalog="system" id="5fY-JC-t83">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="showMapButtonTapped:" destination="BYZ-38-t0r" id="ox2-VA-igE"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="ODy-mW-vMq" id="FSF-A4-S4C"/>
@@ -208,6 +214,35 @@
             </objects>
             <point key="canvasLocation" x="-1165" y="1757"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="GQx-GQ-K4c">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" id="AGF-wX-0hV" customClass="MapViewController" customModule="SeSacTMDBProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HDM-G3-emh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UEt-Wj-IGr">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Zfj-RY-jsh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="UEt-Wj-IGr" firstAttribute="top" secondItem="Zfj-RY-jsh" secondAttribute="top" id="Aea-DR-JU7"/>
+                            <constraint firstItem="UEt-Wj-IGr" firstAttribute="leading" secondItem="Zfj-RY-jsh" secondAttribute="leading" id="EXd-rl-6Ke"/>
+                            <constraint firstItem="Zfj-RY-jsh" firstAttribute="trailing" secondItem="UEt-Wj-IGr" secondAttribute="trailing" id="QjF-Ac-16L"/>
+                            <constraint firstItem="Zfj-RY-jsh" firstAttribute="bottom" secondItem="UEt-Wj-IGr" secondAttribute="bottom" id="xSz-NF-sVg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="UEt-Wj-IGr" id="wpv-Dg-I6S"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R5N-n7-VXU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-241" y="1756"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="vjA-Wc-69u">
             <objects>
@@ -234,6 +269,7 @@
         <image name="arrow.forward" catalog="system" width="128" height="98"/>
         <image name="line.3.horizontal" catalog="system" width="128" height="64"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="map" catalog="system" width="128" height="110"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">

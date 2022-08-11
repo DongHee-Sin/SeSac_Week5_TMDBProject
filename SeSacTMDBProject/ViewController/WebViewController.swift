@@ -10,8 +10,9 @@ import WebKit
 
 class WebViewController: UIViewController, CommonSetting {
 
-    // MARK: - Outlet & Propertys
     static let identifier: String = String(describing: WebViewController.self)
+    
+    // MARK: - Outlet & Propertys
     var linkKey: String?
     
     @IBOutlet weak var webView: WKWebView!
