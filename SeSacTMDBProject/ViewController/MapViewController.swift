@@ -31,6 +31,7 @@ class MapViewController: UIViewController, CommonSetting {
     }
     
     
+    
     // MARK: - Methods
     func configureInitialUI() {
         locationManager.delegate = self
@@ -38,10 +39,7 @@ class MapViewController: UIViewController, CommonSetting {
         setNavigationBarButton()
         
         setRegion(center: sesacCoordinate)
-        TheaterList().mapAnnotations.forEach { theater in
-            let coordinate = CLLocationCoordinate2D(latitude: theater.latitude, longitude: theater.longitude)
-            setAnnotation(title: theater.type, subTitle: theater.location, coordinate: coordinate)
-        }
+        setAnnotations(theaters: TheaterList().mapAnnotations)
     }
     
     
@@ -49,10 +47,36 @@ class MapViewController: UIViewController, CommonSetting {
         let dismissButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(dismissButtonTapped))
         dismissButton.tintColor = .darkGray
         self.navigationItem.leftBarButtonItem = dismissButton
+        
+        let filterButton = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterButtonTapped))
+        filterButton.tintColor = .darkGray
+        self.navigationItem.rightBarButtonItem = filterButton
     }
     
     @objc func dismissButtonTapped() {
         dismiss(animated: true)
+    }
+    
+    @objc func filterButtonTapped() {
+        let filterActionSheetController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let megabox = UIAlertAction(title: "메가박스", style: .default) { [weak self] _ in
+            self?.setAnnotations(theaters: TheaterList().mapAnnotations, type: .메가박스)
+        }
+        let lotte = UIAlertAction(title: "롯데시네마", style: .default) { [weak self] _ in
+            self?.setAnnotations(theaters: TheaterList().mapAnnotations, type: .롯데시네마)
+        }
+        let cgv = UIAlertAction(title: "CGV", style: .default) { [weak self] _ in
+            self?.setAnnotations(theaters: TheaterList().mapAnnotations, type: .CGV)
+        }
+        let all = UIAlertAction(title: "전체보기", style: .default) { [weak self] _ in
+            self?.setAnnotations(theaters: TheaterList().mapAnnotations)
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        
+        [megabox, lotte, cgv, all, cancel].forEach { filterActionSheetController.addAction($0) }
+        
+        present(filterActionSheetController, animated: true)
     }
 }
 
@@ -71,6 +95,26 @@ extension MapViewController {
     }
     
     
+    func setAnnotations(theaters: [Theater], type: TheaterType? = nil) {
+        removeAllAnnotation()
+        if let theaterType = type {
+            theaters.filter { $0.type == type }.forEach { theater in
+                setAnnotation(theater: theater)
+            }
+        }else {
+            theaters.forEach { theater in
+                setAnnotation(theater: theater)
+            }
+        }
+    }
+    
+    
+    func setAnnotation(theater: Theater) {
+        let coordinate = CLLocationCoordinate2D(latitude: theater.latitude, longitude: theater.longitude)
+        setAnnotation(title: theater.type.rawValue, subTitle: theater.location, coordinate: coordinate)
+    }
+    
+    
     // map에 핀(annotation) 추가
     func setAnnotation(title: String?, subTitle: String?, coordinate: CLLocationCoordinate2D) {
         let annotation = MKPointAnnotation()
@@ -79,6 +123,11 @@ extension MapViewController {
         annotation.coordinate = coordinate
         
         mapView.addAnnotation(annotation)
+    }
+    
+    
+    func removeAllAnnotation() {
+        mapView.removeAnnotations(mapView.annotations)
     }
 }
 
@@ -126,6 +175,7 @@ extension MapViewController {
             print("Restricted : 앱의 위치 권한 자체가 없는 경우 / 자녀 보호 기능같은 이유로 기능이 제한된 상황")
         case .denied:
             print("Denied : 위치 권한을 허용하지 않은 상태 또는 시스템 설정에서 전역적으로 권한을 비활성화한 상황")
+            showRequestLocationServiceAlert()
         case .authorizedWhenInUse:
             print("Authorized When In Use : 앱이 포그라운드 상태인 경우에만 위치 서비스 허용")
             
@@ -135,6 +185,22 @@ extension MapViewController {
         default:
             print("DEFAULT")
         }
+    }
+    
+    
+    // 위치 서비스 권한 요청 : 커스텀 얼럿
+    func showRequestLocationServiceAlert() {
+        let requestLocationServiceAlert = UIAlertController(title: "위치 정보 이용", message: "위치 서비스를 사용할 수 없습니다.\n디바이스의 '설정 > 개인정보 보호'에서 위치 서비스를 켜주세요.", preferredStyle: .alert)
+        let goSetting = UIAlertAction(title: "설정으로 이동", style: .destructive) { _ in
+            if let appSetting = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(appSetting)
+            }
+        }
+        let cancel = UIAlertAction(title: "취소", style: .default)
+        requestLocationServiceAlert.addAction(cancel)
+        requestLocationServiceAlert.addAction(goSetting)
+        
+        present(requestLocationServiceAlert, animated: true)
     }
 }
 
@@ -169,14 +235,13 @@ extension MapViewController: CLLocationManagerDelegate {
     
     // 사용자의 권한 상태가 변경될 때 호출되는 메서드 (iOS 14 ~)
     // 권한 상태 변경 뿐만 아니라, CLLocationManager의 인스턴스가 생성되는 시점에도 호출된다.
-    @available(iOS 14.0, *)
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         // 인스턴스가 생성되거나, 권한 상태가 변경되면 => 다시 권한을 조회하고, 필요한 경우 권한 요청
         checkUserDeviceLocationServiceAuthorization()
     }
     
     // 권한 상태가 변경되면 호출 (iOS 14 미만에서 사용)
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print(#function)
-    }
+//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+//        print(#function)
+//    }
 }
