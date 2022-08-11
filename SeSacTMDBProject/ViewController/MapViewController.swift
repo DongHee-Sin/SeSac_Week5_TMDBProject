@@ -36,6 +36,8 @@ class MapViewController: UIViewController, CommonSetting {
         locationManager.delegate = self
         
         setNavigationBarButton()
+        
+        setRegion(center: sesacCoordinate)
     }
     
     
@@ -48,6 +50,22 @@ class MapViewController: UIViewController, CommonSetting {
     @objc func dismissButtonTapped() {
         dismiss(animated: true)
     }
+}
+
+
+
+
+// MARK: - MapView 관련 User Defined 메서드
+extension MapViewController {
+    
+    // 사용자에게 보여지는 영역 변경
+    func setRegion(center: CLLocationCoordinate2D) {
+        // center(중심)를 기반으로 사용자에게 보여줄 범위 설정
+        let region = MKCoordinateRegion(center: center, latitudinalMeters: 500, longitudinalMeters: 500)
+        
+        mapView.setRegion(region, animated: true)
+    }
+    
 }
 
 
@@ -76,8 +94,8 @@ extension MapViewController {
             authorizationStatus = CLLocationManager.authorizationStatus()
         }
         
-        // 권한 요청하기
-        
+        // authorizationStatus 기반으로 분기처리 수행하는 메서드 호출
+        checkUserCurrentLocationAuthorization(authorizationStatus)
     }
     
     
@@ -103,7 +121,6 @@ extension MapViewController {
         default:
             print("DEFAULT")
         }
-        
     }
 }
 
@@ -120,7 +137,7 @@ extension MapViewController: CLLocationManagerDelegate {
         // ex) 위치 기반으로 날씨를 조회하거나, 지도를 다시 세팅하는 등의 처리
         
         if let coordinate = locations.last?.coordinate {
-            print("사용자 위치 사용")
+            setRegion(center: coordinate)
         }
         
         // CLLocationManager는 startUpdatingLocation을 한번 실행시키면, 지속적으로 업데이트 시킴 (멈출때까지)
