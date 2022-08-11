@@ -19,8 +19,6 @@ class MapViewController: UIViewController, CommonSetting {
     
     let locationManager = CLLocationManager()
     
-    let sesacCoordinate = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
-    
     
     
     // MARK: - View Did Load
@@ -35,9 +33,11 @@ class MapViewController: UIViewController, CommonSetting {
     // MARK: - Methods
     func configureInitialUI() {
         locationManager.delegate = self
+        mapView.delegate = self
         
         setNavigationBarButton()
         
+        let sesacCoordinate = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
         setRegion(center: sesacCoordinate)
         setAnnotations(theaters: TheaterList().mapAnnotations)
     }
@@ -83,13 +83,14 @@ class MapViewController: UIViewController, CommonSetting {
 
 
 
+
 // MARK: - MapView 관련 User Defined 메서드
 extension MapViewController {
     
     // 사용자에게 보여지는 영역 변경
     func setRegion(center: CLLocationCoordinate2D) {
         // center(중심)를 기반으로 사용자에게 보여줄 범위 설정
-        let region = MKCoordinateRegion(center: center, latitudinalMeters: 500, longitudinalMeters: 500)
+        let region = MKCoordinateRegion(center: center, latitudinalMeters: 1000, longitudinalMeters: 1000)
         
         mapView.setRegion(region, animated: true)
     }
@@ -98,7 +99,7 @@ extension MapViewController {
     func setAnnotations(theaters: [Theater], type: TheaterType? = nil) {
         removeAllAnnotation()
         if let theaterType = type {
-            theaters.filter { $0.type == type }.forEach { theater in
+            theaters.filter { $0.type == theaterType }.forEach { theater in
                 setAnnotation(theater: theater)
             }
         }else {
@@ -130,6 +131,42 @@ extension MapViewController {
         mapView.removeAnnotations(mapView.annotations)
     }
 }
+
+
+
+
+
+// MARK: - MKMapViewDelegate Protocol
+extension MapViewController: MKMapViewDelegate {
+    
+    // Custom Annotation 적용
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !annotation.isKind(of: MKAnnotation.self) else {
+            return nil
+        }
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "Custom")
+
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "Custom")
+            annotationView?.canShowCallout = true
+            
+            // Custom Annotation을 클릭하여 Title, SubTitle을 보여주는 상황에서 오른쪽에 작은 버튼 추가
+            let miniButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+            miniButton.setImage(UIImage(systemName: "person"), for: .normal)
+            miniButton.tintColor = .darkGray
+            annotationView?.rightCalloutAccessoryView = miniButton
+            
+        }else {
+            annotationView?.annotation = annotation
+        }
+        
+        annotationView?.image = UIImage(systemName: "location.north.fill")
+        
+        return annotationView
+    }
+}
+
 
 
 
@@ -203,6 +240,7 @@ extension MapViewController {
         present(requestLocationServiceAlert, animated: true)
     }
 }
+
 
 
 
