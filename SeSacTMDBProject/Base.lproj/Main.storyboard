@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YTz-z1-Ap9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -13,7 +12,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="wRw-Ee-bMX">
             <objects>
-                <tabBarController id="YTz-z1-Ap9" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="RootTabBarController" id="YTz-z1-Ap9" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="s4P-mg-w00">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -21,7 +20,7 @@
                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="xsb-VI-gmC" kind="relationship" relationship="viewControllers" id="5qi-s5-488"/>
+                        <segue destination="se7-az-mv2" kind="relationship" relationship="viewControllers" id="53Z-C5-nN7"/>
                         <segue destination="mTU-vR-FFB" kind="relationship" relationship="viewControllers" id="tg9-Kb-LyD"/>
                     </connections>
                 </tabBarController>
@@ -71,12 +70,6 @@
                         <barButtonItem key="leftBarButtonItem" image="line.3.horizontal" catalog="system" id="9Pj-ln-A5c">
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="map" catalog="system" id="5fY-JC-t83">
-                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="showMapButtonTapped:" destination="BYZ-38-t0r" id="ox2-VA-igE"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="ODy-mW-vMq" id="FSF-A4-S4C"/>
@@ -84,7 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1164" y="911"/>
+            <point key="canvasLocation" x="-897" y="911"/>
         </scene>
         <!--Movie List View Controller-->
         <scene sceneID="HfY-At-F8k">
@@ -115,7 +108,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="giW-AP-4JK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="270" y="911"/>
+            <point key="canvasLocation" x="1179.7101449275362" y="910.71428571428567"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="Cff-df-fUn">
@@ -244,23 +237,23 @@
             <point key="canvasLocation" x="-241" y="1756"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="vjA-Wc-69u">
+        <scene sceneID="JbI-43-Lvc">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xsb-VI-gmC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="magnifyingglass" catalog="system" id="3co-UZ-tBD"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="se7-az-mv2" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="magnifyingglass" catalog="system" id="1Hu-Za-gwK"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ANk-4m-52d">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sce-NX-XD0">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="IWg-TJ-hGf"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="XSL-EB-8bw"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3CX-Zl-S41" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oSb-mg-GT2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1980" y="911"/>
+            <point key="canvasLocation" x="-1641" y="911"/>
         </scene>
     </scenes>
     <resources>
@@ -269,7 +262,6 @@
         <image name="arrow.forward" catalog="system" width="128" height="98"/>
         <image name="line.3.horizontal" catalog="system" width="128" height="64"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
-        <image name="map" catalog="system" width="128" height="110"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">

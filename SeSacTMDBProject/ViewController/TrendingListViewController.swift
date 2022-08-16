@@ -75,6 +75,10 @@ class TrendingListViewController: UIViewController {
     private func setNavigationBar() {
         self.navigationItem.title = "TMDB"
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let mapButton = UIBarButtonItem(image: UIImage(systemName: "map"), style: .plain, target: self, action: #selector(mapButtonTapped))
+        mapButton.tintColor = .darkGray
+        self.navigationItem.rightBarButtonItem = mapButton
     }
     
     
@@ -89,7 +93,7 @@ class TrendingListViewController: UIViewController {
     }
     
     
-    @IBAction private func showMapButtonTapped(_ sender: UIBarButtonItem) {
+    @objc func mapButtonTapped() {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: MapViewController.identifier) as? MapViewController else {
             return
         }
