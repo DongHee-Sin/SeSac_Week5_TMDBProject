@@ -24,6 +24,7 @@
 		D07A52C728ABBA0B0035A4D1 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07A52C628ABBA0B0035A4D1 /* FirstViewController.swift */; };
 		D07A52C928ABBA110035A4D1 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07A52C828ABBA110035A4D1 /* SecondViewController.swift */; };
 		D07A52CB28ABBA2C0035A4D1 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07A52CA28ABBA2C0035A4D1 /* ThirdViewController.swift */; };
+		D07A52CE28ABC6270035A4D1 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07A52CD28ABC6270035A4D1 /* UserDefaultsManager.swift */; };
 		D07CD98D289A5C5C00FAA826 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07CD98C289A5C5C00FAA826 /* APIKeys.swift */; };
 		D07CD98F289A5DBF00FAA826 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07CD98E289A5DBF00FAA826 /* EndPoint.swift */; };
 		D07CD993289A5E9700FAA826 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D07CD992289A5E9700FAA826 /* Alamofire */; };
@@ -102,6 +103,7 @@
 		D07A52C628ABBA0B0035A4D1 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		D07A52C828ABBA110035A4D1 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		D07A52CA28ABBA2C0035A4D1 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		D07A52CD28ABC6270035A4D1 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		D07CD98C289A5C5C00FAA826 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		D07CD98E289A5DBF00FAA826 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		D07CD998289A619F00FAA826 /* SearchResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				D0501309289D50D1002607F0 /* APIManager.swift */,
 				D0F89CD428A3E42300CAC1DE /* RecommendMovieModel.swift */,
 				D0DBA4CD28A4EF5000E080C6 /* TheaterModel.swift */,
+				D07A52CD28ABC6270035A4D1 /* UserDefaultsManager.swift */,
 			);
 			path = "Model-Manager";
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				D07A52C428ABB3790035A4D1 /* IntroPageViewController.swift in Sources */,
 				D064A46A2899F6C8000FC6A9 /* AppDelegate.swift in Sources */,
 				D07CD98F289A5DBF00FAA826 /* EndPoint.swift in Sources */,
+				D07A52CE28ABC6270035A4D1 /* UserDefaultsManager.swift in Sources */,
 				D07CD98D289A5C5C00FAA826 /* APIKeys.swift in Sources */,
 				D0B5B2D1289BD0620013E171 /* MediaInfoTableViewHeader.swift in Sources */,
 				D07D4F33289D348D00602949 /* WebViewController.swift in Sources */,

@@ -20,6 +20,8 @@ class ThirdViewController: UIViewController {
             return
         }
         
+        UserDefaultManager.shared.isInitial = false
+        
         changeRootViewController(to: vc)
     }
     
