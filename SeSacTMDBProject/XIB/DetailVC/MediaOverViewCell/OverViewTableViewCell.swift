@@ -17,10 +17,10 @@ class OverViewTableViewCell: UITableViewCell, CommonSetting {
 
     static let identifier: String = String(describing: OverViewTableViewCell.self)
     
-    @IBOutlet weak var seeMoreButton: UIButton!
-    @IBOutlet weak var overViewLabel: UILabel!
+    @IBOutlet private weak var seeMoreButton: UIButton!
+    @IBOutlet private weak var overViewLabel: UILabel!
     
-    var delegate: OverViewExtensionDelegate?
+    private var delegate: OverViewExtensionDelegate?
     
     
     override func awakeFromNib() {
@@ -51,7 +51,12 @@ class OverViewTableViewCell: UITableViewCell, CommonSetting {
     }
     
     
-    @IBAction func seeMoreButtonTapped(_ sender: UIButton) {
+    func setDelegate(delegate: OverViewExtensionDelegate) {
+        self.delegate = delegate
+    }
+    
+    
+    @IBAction private func seeMoreButtonTapped(_ sender: UIButton) {
         delegate?.seeMoreButtonTapped()
     }
     

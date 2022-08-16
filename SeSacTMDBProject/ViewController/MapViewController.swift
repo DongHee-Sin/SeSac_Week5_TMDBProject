@@ -15,9 +15,9 @@ class MapViewController: UIViewController, CommonSetting {
     static let identifier = String(describing: MapViewController.self)
     
     // MARK: - Property, Outlet
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet private weak var mapView: MKMapView!
     
-    let locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
     
     
     
@@ -43,7 +43,7 @@ class MapViewController: UIViewController, CommonSetting {
     }
     
     
-    func setNavigationBarButton() {
+    private func setNavigationBarButton() {
         let dismissButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(dismissButtonTapped))
         dismissButton.tintColor = .darkGray
         self.navigationItem.leftBarButtonItem = dismissButton
@@ -53,11 +53,11 @@ class MapViewController: UIViewController, CommonSetting {
         self.navigationItem.rightBarButtonItem = filterButton
     }
     
-    @objc func dismissButtonTapped() {
+    @objc private func dismissButtonTapped() {
         dismiss(animated: true)
     }
     
-    @objc func filterButtonTapped() {
+    @objc private func filterButtonTapped() {
         let filterActionSheetController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let megabox = UIAlertAction(title: "메가박스", style: .default) { [weak self] _ in
@@ -88,7 +88,7 @@ class MapViewController: UIViewController, CommonSetting {
 extension MapViewController {
     
     // 사용자에게 보여지는 영역 변경
-    func setRegion(center: CLLocationCoordinate2D) {
+    private func setRegion(center: CLLocationCoordinate2D) {
         // center(중심)를 기반으로 사용자에게 보여줄 범위 설정
         let region = MKCoordinateRegion(center: center, latitudinalMeters: 1000, longitudinalMeters: 1000)
         
@@ -96,7 +96,7 @@ extension MapViewController {
     }
     
     
-    func setAnnotations(theaters: [Theater], type: TheaterType? = nil) {
+    private func setAnnotations(theaters: [Theater], type: TheaterType? = nil) {
         removeAllAnnotation()
         if let theaterType = type {
             theaters.filter { $0.type == theaterType }.forEach { theater in
@@ -110,14 +110,14 @@ extension MapViewController {
     }
     
     
-    func setAnnotation(theater: Theater) {
+    private func setAnnotation(theater: Theater) {
         let coordinate = CLLocationCoordinate2D(latitude: theater.latitude, longitude: theater.longitude)
         setAnnotation(title: theater.type.rawValue, subTitle: theater.location, coordinate: coordinate)
     }
     
     
     // map에 핀(annotation) 추가
-    func setAnnotation(title: String?, subTitle: String?, coordinate: CLLocationCoordinate2D) {
+    private func setAnnotation(title: String?, subTitle: String?, coordinate: CLLocationCoordinate2D) {
         let annotation = MKPointAnnotation()
         annotation.title = title
         annotation.subtitle = subTitle
@@ -127,7 +127,7 @@ extension MapViewController {
     }
     
     
-    func removeAllAnnotation() {
+    private func removeAllAnnotation() {
         mapView.removeAnnotations(mapView.annotations)
     }
 }
@@ -175,7 +175,7 @@ extension MapViewController: MKMapViewDelegate {
 extension MapViewController {
     
     // 사용자 디바이스가 위치 서비스를 활성화하고 있는지 여부를 확인하여 분기처리
-    func checkUserDeviceLocationServiceAuthorization() {
+    private func checkUserDeviceLocationServiceAuthorization() {
         
         // 사용자 디바이스의 위치 서비스 활성화 여부 확인하고, 활성화 상태인 경우에만 권한 요청
         guard CLLocationManager.locationServicesEnabled() else {
@@ -200,7 +200,7 @@ extension MapViewController {
     
     
     // 앱에 대한 사용자의 위치 권한 상태를 기반으로 분기처리 (사용자 디바이스의 위치 서비스가 활성화 상태인지 여부 파악이 선행되어야 함)
-    func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
+    private func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
         switch authorizationStatus {
         case .notDetermined:
             print("Not Determined : 권한 설정 여부를 사용자가 선택하지 않은 상태")
@@ -226,7 +226,7 @@ extension MapViewController {
     
     
     // 위치 서비스 권한 요청 : 커스텀 얼럿
-    func showRequestLocationServiceAlert() {
+    private func showRequestLocationServiceAlert() {
         let requestLocationServiceAlert = UIAlertController(title: "위치 정보 이용", message: "위치 서비스를 사용할 수 없습니다.\n디바이스의 '설정 > 개인정보 보호'에서 위치 서비스를 켜주세요.", preferredStyle: .alert)
         let goSetting = UIAlertAction(title: "설정으로 이동", style: .destructive) { _ in
             if let appSetting = URL(string: UIApplication.openSettingsURLString) {

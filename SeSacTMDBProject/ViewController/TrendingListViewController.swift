@@ -26,12 +26,12 @@ class TrendingListViewController: UIViewController, CommonSetting {
     static let identifier: String = String(describing: TrendingListViewController.self)
     
     // MARK: - Propertys & Outlet
-    var mediaDataManager = TMDBDataManager.shared
+    private var mediaDataManager = TMDBDataManager.shared
     
-    var totalPage = 0
-    var startPage = 1
+    private var totalPage = 0
+    private var startPage = 1
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     
     
@@ -44,7 +44,7 @@ class TrendingListViewController: UIViewController, CommonSetting {
         requestGenres()
     }
 
-
+    
     
     // MARK: - Methods
     func configureInitialUI() {
@@ -63,7 +63,7 @@ class TrendingListViewController: UIViewController, CommonSetting {
     }
     
     
-    func setSearchController() {
+    private func setSearchController() {
         let searchController = UISearchController(searchResultsController: nil)
         
         searchController.searchResultsUpdater = self
@@ -72,13 +72,13 @@ class TrendingListViewController: UIViewController, CommonSetting {
     }
     
     
-    func setNavigationBar() {
+    private func setNavigationBar() {
         self.navigationItem.title = "TMDB"
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     
-    func presentWebView(linkKey: String) {
+    private func presentWebView(linkKey: String) {
         guard let webVC = storyboard?.instantiateViewController(withIdentifier: WebViewController.identifier) as? WebViewController else {
             return
         }
@@ -89,7 +89,7 @@ class TrendingListViewController: UIViewController, CommonSetting {
     }
     
     
-    @IBAction func showMapButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction private func showMapButtonTapped(_ sender: UIBarButtonItem) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: MapViewController.identifier) as? MapViewController else {
             return
         }
@@ -103,7 +103,7 @@ class TrendingListViewController: UIViewController, CommonSetting {
     
     
     // MARK: - Network
-    func requestTranslatedData(mediaType: MediaType, timeWindow: TimeWindow, page: Int) {
+    private func requestTranslatedData(mediaType: MediaType, timeWindow: TimeWindow, page: Int) {
         let url = EndPoint.TMDBEndPoint + "\(mediaType.rawValue)/\(timeWindow.rawValue)?api_key=\(APIKeys.TMDBKEY)&page=\(page)"
         
         APIManager.shared.requestAPI(url: url) { [unowned self] json in
@@ -131,7 +131,7 @@ class TrendingListViewController: UIViewController, CommonSetting {
     }
     
     
-    func requestGenres() {
+    private func requestGenres() {
         APIManager.shared.requestAPI(url: EndPoint.GenreURL) { [unowned self] json in
             json["genres"].arrayValue.forEach {
                 let key = $0["id"].intValue
@@ -144,7 +144,7 @@ class TrendingListViewController: UIViewController, CommonSetting {
     }
     
     
-    func requestYoutubeLink(mediaID: Int) {
+    private func requestYoutubeLink(mediaID: Int) {
         let url = EndPoint.webViewRequestEndpoint + "\(mediaID)/videos?language=en-US&api_key=\(APIKeys.TMDBKEY)"
         
         APIManager.shared.requestAPI(url: url) { [unowned self] json in
@@ -168,8 +168,7 @@ extension TrendingListViewController: UICollectionViewDelegate, UICollectionView
         
         let mediaData = mediaDataManager.getMediaData(at: indexPath.row)
         
-        cell.mediaID = mediaData.id
-        cell.delegate = self
+        cell.setDelegateAndMediaID(delegate: self, mediaID: mediaData.id)
         cell.updateCell(by: mediaData)
         
         return cell
@@ -194,7 +193,7 @@ extension TrendingListViewController: UICollectionViewDelegate, UICollectionView
     
     
     // Layout
-    func configureCollectionViewLayout(rowCount: CGFloat) -> UICollectionViewLayout {
+    private func configureCollectionViewLayout(rowCount: CGFloat) -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         
         let sectionSpacing: CGFloat = 8

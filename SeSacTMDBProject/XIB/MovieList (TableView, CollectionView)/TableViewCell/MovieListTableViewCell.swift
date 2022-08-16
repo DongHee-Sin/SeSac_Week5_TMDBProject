@@ -12,8 +12,8 @@ class MovieListTableViewCell: UITableViewCell, CommonSetting {
     static let identifier: String = String(describing: MovieListTableViewCell.self)
     
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     
     override func awakeFromNib() {
@@ -37,7 +37,7 @@ class MovieListTableViewCell: UITableViewCell, CommonSetting {
     }
     
     
-    func setCollectionViewLayout() -> UICollectionViewLayout {
+    private func setCollectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let itemWidth = UIScreen.main.bounds.width * 0.27
@@ -45,5 +45,18 @@ class MovieListTableViewCell: UITableViewCell, CommonSetting {
         layout.minimumInteritemSpacing = 8
         layout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         return layout
+    }
+    
+    
+    func updateCell(title: String, delegate: MovieListViewController, tag: Int) {
+        titleLabel.text = title + " 관련 영화"
+        
+        collectionView.delegate = delegate
+        collectionView.dataSource = delegate
+        collectionView.register(UINib(nibName: MovieListCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MovieListCollectionViewCell.identifier)
+
+        collectionView.tag = tag
+        
+        collectionView.reloadData()
     }
 }

@@ -15,7 +15,7 @@ class WebViewController: UIViewController, CommonSetting {
     // MARK: - Outlet & Propertys
     var linkKey: String?
     
-    @IBOutlet weak var webView: WKWebView!
+    @IBOutlet private weak var webView: WKWebView!
     
     
     
@@ -33,7 +33,7 @@ class WebViewController: UIViewController, CommonSetting {
     }
     
     
-    func openWebView(url: String) {
+    private func openWebView(url: String) {
         guard let url = URL(string: url) else {
             present404Alert()
             return
@@ -44,7 +44,7 @@ class WebViewController: UIViewController, CommonSetting {
     }
     
     
-    func present404Alert() {
+    private func present404Alert() {
         let alertController = UIAlertController(title: "404", message: "NOT FOUND", preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(alertAction)
@@ -52,24 +52,24 @@ class WebViewController: UIViewController, CommonSetting {
     }
     
     
-    @IBAction func dismissButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction private func dismissButtonTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
     
     
-    @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction private func backButtonTapped(_ sender: UIBarButtonItem) {
         if webView.canGoBack {
             webView.goBack()
         }
     }
     
     
-    @IBAction func reloadButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction private func reloadButtonTapped(_ sender: UIBarButtonItem) {
         webView.reload()
     }
     
     
-    @IBAction func forwardButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction private func forwardButtonTapped(_ sender: UIBarButtonItem) {
         if webView.canGoForward {
             webView.goForward()
         }

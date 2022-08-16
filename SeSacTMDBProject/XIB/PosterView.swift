@@ -7,9 +7,11 @@
 
 import UIKit
 
+import Kingfisher
+
 class PosterView: UIView {
 
-    @IBOutlet weak var posterImage: UIImageView!
+    @IBOutlet private weak var posterImage: UIImageView!
     
     
     override func awakeFromNib() {
@@ -17,6 +19,8 @@ class PosterView: UIView {
         
         self.layer.cornerRadius = self.frame.height / 20
         self.clipsToBounds = true
+        
+        posterImage.contentMode = .scaleAspectFill
     }
     
     
@@ -26,5 +30,10 @@ class PosterView: UIView {
         let view = UINib(nibName: "PosterView", bundle: nil).instantiate(withOwner: self, options: nil).first as! UIView
         view.frame = self.bounds
         self.addSubview(view)
+    }
+    
+    
+    func setImage(url: URL?) {
+        posterImage.kf.setImage(with: url, placeholder: UIImage(systemName: "star"))
     }
 }

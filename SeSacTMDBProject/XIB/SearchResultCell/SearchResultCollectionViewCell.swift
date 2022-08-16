@@ -19,19 +19,19 @@ class SearchResultCollectionViewCell: UICollectionViewCell, CommonSetting {
 
     static let identifier = String(describing: SearchResultCollectionViewCell.self)
     
-    var delegate: WebViewButtonDelegate?
-    var mediaID: Int?
+    private var delegate: WebViewButtonDelegate?
+    private var mediaID: Int?
     
     // MARK: - Outlet
-    @IBOutlet weak var forShadowView: UIView!
-    @IBOutlet weak var forRadiusView: UIView!
+    @IBOutlet private weak var forShadowView: UIView!
+    @IBOutlet private weak var forRadiusView: UIView!
     
-    @IBOutlet weak var releaseDate: UILabel!
-    @IBOutlet weak var genresLabel: UILabel!
-    @IBOutlet weak var posterImage: UIImageView!
-    @IBOutlet weak var gradeLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var releaseDate: UILabel!
+    @IBOutlet private weak var genresLabel: UILabel!
+    @IBOutlet private weak var posterImage: UIImageView!
+    @IBOutlet private weak var gradeLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
     
     
     
@@ -52,7 +52,7 @@ class SearchResultCollectionViewCell: UICollectionViewCell, CommonSetting {
     }
     
     
-    func addShadow(_ to: UIView, color: CGColor, width: CGFloat, height: CGFloat, alpha: Float, radius: CGFloat) {
+    private func addShadow(_ to: UIView, color: CGColor, width: CGFloat, height: CGFloat, alpha: Float, radius: CGFloat) {
         to.layer.shadowColor = color
         to.layer.shadowOpacity = alpha
         to.layer.shadowRadius = radius
@@ -73,8 +73,14 @@ class SearchResultCollectionViewCell: UICollectionViewCell, CommonSetting {
     }
     
     
+    func setDelegateAndMediaID(delegate: WebViewButtonDelegate, mediaID: Int) {
+        self.delegate = delegate
+        self.mediaID = mediaID
+    }
     
-    @IBAction func webViewButtonTapped(_ sender: UIButton) {
+    
+    
+    @IBAction private func webViewButtonTapped(_ sender: UIButton) {
         delegate?.webViewButtonTapped(mediaID: mediaID ?? 0)
     }
 }

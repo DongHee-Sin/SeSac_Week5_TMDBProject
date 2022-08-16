@@ -13,9 +13,9 @@ class MediaInfoTableViewHeader: UITableViewHeaderFooterView, CommonSetting {
     
     static let identifier: String = String(describing: MediaInfoTableViewHeader.self)
 
-    @IBOutlet weak var backgroundImage: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var posterImage: UIImageView!
+    @IBOutlet private weak var backgroundImage: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var posterImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

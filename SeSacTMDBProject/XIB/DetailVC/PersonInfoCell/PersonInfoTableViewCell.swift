@@ -13,9 +13,9 @@ class PersonInfoTableViewCell: UITableViewCell, CommonSetting {
     
     static let identifier: String = String(describing: PersonInfoTableViewCell.self)
 
-    @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var detailInfoLabel: UILabel!
+    @IBOutlet private weak var profileImage: UIImageView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var detailInfoLabel: UILabel!
     
     
     override func awakeFromNib() {

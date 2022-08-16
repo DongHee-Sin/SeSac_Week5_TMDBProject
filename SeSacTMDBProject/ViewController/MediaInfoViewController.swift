@@ -18,12 +18,12 @@ class MediaInfoViewController: UIViewController, CommonSetting {
     // MARK: - Propertys & Outlet
     var media: TMDBMedia?
     
-    var castList: [CastInfo] = []
-    var crewList: [CrewInfo] = []
+    private var castList: [CastInfo] = []
+    private var crewList: [CrewInfo] = []
     
-    var isOverViewExtended: Bool = false
+    private var isOverViewExtended: Bool = false
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     
     
     
@@ -55,7 +55,7 @@ class MediaInfoViewController: UIViewController, CommonSetting {
     }
     
     
-    func requestMediaInfo(movieID: Int) {
+    private func requestMediaInfo(movieID: Int) {
         let url = EndPoint.MediaInfoEndPoint + "\(movieID)/credits?api_key=\(APIKeys.TMDBKEY)&language=en-US"
         
         APIManager.shared.requestAPI(url: url) { [unowned self] json in
@@ -147,7 +147,7 @@ extension MediaInfoViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.configureShortenUI()
             }
             
-            cell.delegate = self
+            cell.setDelegate(delegate: self)
             
             return cell
         }else {

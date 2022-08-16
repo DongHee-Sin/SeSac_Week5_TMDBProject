@@ -11,17 +11,18 @@ class MovieListCollectionViewCell: UICollectionViewCell, CommonSetting {
     
     static let identifier = String(describing: MovieListCollectionViewCell.self)
     
-    @IBOutlet weak var posterView: PosterView!
+    @IBOutlet private weak var posterView: PosterView!
     
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        configureInitialUI()
     }
 
     
-    func configureInitialUI() {
-        posterView.posterImage.contentMode = .scaleAspectFill
+    func configureInitialUI() {}
+    
+    
+    func setImage(url: URL?) {
+        posterView.setImage(url: url)
     }
 }
