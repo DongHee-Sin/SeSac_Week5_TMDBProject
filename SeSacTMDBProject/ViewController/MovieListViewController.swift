@@ -9,9 +9,7 @@ import UIKit
 
 import Kingfisher
 
-class MovieListViewController: UIViewController, CommonSetting {
-    
-    static let identifier = String(describing: MovieListViewController.self)
+class MovieListViewController: UIViewController {
 
     // MARK: - Propertys & Outlet
     @IBOutlet private weak var tableView: UITableView!

@@ -11,9 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 
-class MediaInfoViewController: UIViewController, CommonSetting {
-
-    static let identifier: String = String(describing: MediaInfoViewController.self)
+class MediaInfoViewController: UIViewController {
     
     // MARK: - Propertys & Outlet
     var media: TMDBMedia?

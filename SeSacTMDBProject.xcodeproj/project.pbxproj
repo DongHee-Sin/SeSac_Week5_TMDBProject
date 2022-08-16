@@ -27,6 +27,8 @@
 		D07CD99B289A619F00FAA826 /* SearchResultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07CD999289A619F00FAA826 /* SearchResultCollectionViewCell.xib */; };
 		D07CD99E289A678800FAA826 /* TMDBResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07CD99D289A678800FAA826 /* TMDBResponseModel.swift */; };
 		D07D4F33289D348D00602949 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07D4F32289D348D00602949 /* WebViewController.swift */; };
+		D0837F3628ABAEC000798B5A /* SeSacTMDBFrameWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0837F3228ABAEA600798B5A /* SeSacTMDBFrameWork.framework */; };
+		D0837F3728ABAEC000798B5A /* SeSacTMDBFrameWork.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D0837F3228ABAEA600798B5A /* SeSacTMDBFrameWork.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D0B5B2C1289BC6430013E171 /* MediaInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B5B2C0289BC6430013E171 /* MediaInfoViewController.swift */; };
 		D0B5B2CC289BCDBD0013E171 /* PersonInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B5B2CA289BCDBD0013E171 /* PersonInfoTableViewCell.swift */; };
 		D0B5B2CD289BCDBD0013E171 /* PersonInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B5B2CB289BCDBD0013E171 /* PersonInfoTableViewCell.xib */; };
@@ -44,6 +46,37 @@
 		D0EB828E28A2769B00FDEEA7 /* MovieListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0EB828C28A2769B00FDEEA7 /* MovieListTableViewCell.xib */; };
 		D0F89CD528A3E42300CAC1DE /* RecommendMovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F89CD428A3E42300CAC1DE /* RecommendMovieModel.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D0837F3128ABAEA600798B5A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0837F2C28ABAEA600798B5A /* SeSacTMDBFrameWork.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0837F0828AB95EE00798B5A;
+			remoteInfo = SeSacTMDBFrameWork;
+		};
+		D0837F3328ABAEA600798B5A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0837F2C28ABAEA600798B5A /* SeSacTMDBFrameWork.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0837F1228AB95EF00798B5A;
+			remoteInfo = SeSacTMDBFrameWorkTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D0837F3828ABAEC000798B5A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D0837F3728ABAEC000798B5A /* SeSacTMDBFrameWork.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D0420D1D28A288B000EC2181 /* PosterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PosterView.xib; sourceTree = "<group>"; };
@@ -66,6 +99,7 @@
 		D07CD999289A619F00FAA826 /* SearchResultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCollectionViewCell.xib; sourceTree = "<group>"; };
 		D07CD99D289A678800FAA826 /* TMDBResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBResponseModel.swift; sourceTree = "<group>"; };
 		D07D4F32289D348D00602949 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		D0837F2C28ABAEA600798B5A /* SeSacTMDBFrameWork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SeSacTMDBFrameWork.xcodeproj; path = ../SeSacTMDBFrameWork/SeSacTMDBFrameWork.xcodeproj; sourceTree = "<group>"; };
 		D0B5B2C0289BC6430013E171 /* MediaInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaInfoViewController.swift; sourceTree = "<group>"; };
 		D0B5B2CA289BCDBD0013E171 /* PersonInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoTableViewCell.swift; sourceTree = "<group>"; };
 		D0B5B2CB289BCDBD0013E171 /* PersonInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonInfoTableViewCell.xib; sourceTree = "<group>"; };
@@ -88,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0837F3628ABAEC000798B5A /* SeSacTMDBFrameWork.framework in Frameworks */,
 				D0C7FD74289BF324004EE566 /* Kingfisher in Frameworks */,
 				D07CD996289A5EA300FAA826 /* SwiftyJSON in Frameworks */,
 				D07CD993289A5E9700FAA826 /* Alamofire in Frameworks */,
@@ -119,9 +154,11 @@
 		D064A45D2899F6C8000FC6A9 = {
 			isa = PBXGroup;
 			children = (
+				D0837F2C28ABAEA600798B5A /* SeSacTMDBFrameWork.xcodeproj */,
 				D064A47E2899F7D3000FC6A9 /* .gitignore */,
 				D064A4682899F6C8000FC6A9 /* SeSacTMDBProject */,
 				D064A4672899F6C8000FC6A9 /* Products */,
+				D0837F3528ABAEC000798B5A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -195,6 +232,22 @@
 				D0DBA4CD28A4EF5000E080C6 /* TheaterModel.swift */,
 			);
 			path = "Model-Manager";
+			sourceTree = "<group>";
+		};
+		D0837F2D28ABAEA600798B5A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D0837F3228ABAEA600798B5A /* SeSacTMDBFrameWork.framework */,
+				D0837F3428ABAEA600798B5A /* SeSacTMDBFrameWorkTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D0837F3528ABAEC000798B5A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D0B5B2BF289BC5730013E171 /* ViewController */ = {
@@ -292,6 +345,7 @@
 				D064A4622899F6C8000FC6A9 /* Sources */,
 				D064A4632899F6C8000FC6A9 /* Frameworks */,
 				D064A4642899F6C8000FC6A9 /* Resources */,
+				D0837F3828ABAEC000798B5A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -338,12 +392,35 @@
 			);
 			productRefGroup = D064A4672899F6C8000FC6A9 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D0837F2D28ABAEA600798B5A /* Products */;
+					ProjectRef = D0837F2C28ABAEA600798B5A /* SeSacTMDBFrameWork.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D064A4652899F6C8000FC6A9 /* SeSacTMDBProject */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D0837F3228ABAEA600798B5A /* SeSacTMDBFrameWork.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SeSacTMDBFrameWork.framework;
+			remoteRef = D0837F3128ABAEA600798B5A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D0837F3428ABAEA600798B5A /* SeSacTMDBFrameWorkTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SeSacTMDBFrameWorkTests.xctest;
+			remoteRef = D0837F3328ABAEA600798B5A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D064A4642899F6C8000FC6A9 /* Resources */ = {
@@ -547,7 +624,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -576,7 +653,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

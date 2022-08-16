@@ -8,9 +8,7 @@
 import UIKit
 import WebKit
 
-class WebViewController: UIViewController, CommonSetting {
-
-    static let identifier: String = String(describing: WebViewController.self)
+class WebViewController: UIViewController {
     
     // MARK: - Outlet & Propertys
     var linkKey: String?

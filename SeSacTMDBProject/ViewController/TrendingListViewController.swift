@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SeSacTMDBFrameWork
+
 import Alamofire
 import SwiftyJSON
 
@@ -21,9 +23,7 @@ enum TimeWindow: String {
 
 
 
-class TrendingListViewController: UIViewController, CommonSetting {
-    
-    static let identifier: String = String(describing: TrendingListViewController.self)
+class TrendingListViewController: UIViewController {
     
     // MARK: - Propertys & Outlet
     private var mediaDataManager = TMDBDataManager.shared

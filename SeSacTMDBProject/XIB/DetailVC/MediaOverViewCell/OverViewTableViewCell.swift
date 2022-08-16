@@ -13,10 +13,8 @@ protocol OverViewExtensionDelegate {
 }
 
 
-class OverViewTableViewCell: UITableViewCell, CommonSetting {
+class OverViewTableViewCell: UITableViewCell {
 
-    static let identifier: String = String(describing: OverViewTableViewCell.self)
-    
     @IBOutlet private weak var seeMoreButton: UIButton!
     @IBOutlet private weak var overViewLabel: UILabel!
     

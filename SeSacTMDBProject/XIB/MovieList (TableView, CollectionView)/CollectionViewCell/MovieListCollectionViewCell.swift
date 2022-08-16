@@ -7,22 +7,22 @@
 
 import UIKit
 
-class MovieListCollectionViewCell: UICollectionViewCell, CommonSetting {
-    
-    static let identifier = String(describing: MovieListCollectionViewCell.self)
+class MovieListCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private weak var posterView: PosterView!
-    
+
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
-    
-    func configureInitialUI() {}
-    
-    
     func setImage(url: URL?) {
         posterView.setImage(url: url)
     }
+}
+
+
+
+class testCell: UICollectionViewCell {
+    
 }

@@ -9,9 +9,7 @@ import UIKit
 
 import Kingfisher
 
-class PersonInfoTableViewCell: UITableViewCell, CommonSetting {
-    
-    static let identifier: String = String(describing: PersonInfoTableViewCell.self)
+class PersonInfoTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var profileImage: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!

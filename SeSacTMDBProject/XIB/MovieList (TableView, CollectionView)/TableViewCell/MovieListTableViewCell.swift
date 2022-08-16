@@ -7,11 +7,8 @@
 
 import UIKit
 
-class MovieListTableViewCell: UITableViewCell, CommonSetting {
+class MovieListTableViewCell: UITableViewCell {
 
-    static let identifier: String = String(describing: MovieListTableViewCell.self)
-    
-    
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
     

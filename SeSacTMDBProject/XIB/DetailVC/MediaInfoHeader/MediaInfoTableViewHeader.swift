@@ -8,11 +8,12 @@
 import UIKit
 
 import Kingfisher
+import SeSacTMDBFrameWork
 
-class MediaInfoTableViewHeader: UITableViewHeaderFooterView, CommonSetting {
+class MediaInfoTableViewHeader: UITableViewHeaderFooterView, ReusableProtocol {
+
+    static var identifier: String { return String(describing: self) }
     
-    static let identifier: String = String(describing: MediaInfoTableViewHeader.self)
-
     @IBOutlet private weak var backgroundImage: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var posterImage: UIImageView!

@@ -15,10 +15,8 @@ protocol WebViewButtonDelegate {
 }
 
 
-class SearchResultCollectionViewCell: UICollectionViewCell, CommonSetting {
+class SearchResultCollectionViewCell: UICollectionViewCell {
 
-    static let identifier = String(describing: SearchResultCollectionViewCell.self)
-    
     private var delegate: WebViewButtonDelegate?
     private var mediaID: Int?
     

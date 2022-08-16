@@ -10,9 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, CommonSetting {
-
-    static let identifier = String(describing: MapViewController.self)
+class MapViewController: UIViewController {
     
     // MARK: - Property, Outlet
     @IBOutlet private weak var mapView: MKMapView!
