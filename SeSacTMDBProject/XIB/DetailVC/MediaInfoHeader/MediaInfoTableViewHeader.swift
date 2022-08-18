@@ -10,13 +10,26 @@ import UIKit
 import Kingfisher
 import SeSacTMDBFrameWork
 
+
+
+protocol StarButtonDelegate {
+    func starButtonTapped()
+}
+
+
+
 class MediaInfoTableViewHeader: UITableViewHeaderFooterView, ReusableProtocol {
 
     static var identifier: String { return String(describing: self) }
     
+    var isStared: Bool = false
+    
+    var delegate: StarButtonDelegate?
+    
     @IBOutlet private weak var backgroundImage: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var posterImage: UIImageView!
+    @IBOutlet weak var starButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,6 +60,27 @@ class MediaInfoTableViewHeader: UITableViewHeaderFooterView, ReusableProtocol {
         posterImage.kf.setImage(with: posterURL)
         
         titleLabel.text = " \(data.title) "
+        
+        isStared = data.isStared
+        updateStar()
     }
+    
+    
+    private func updateStar() {
+        if isStared {
+            starButton.tintColor = .yellow
+        }else {
+            starButton.tintColor = .darkGray
+        }
+    }
+    
+    
+    @IBAction private func starButtonTapped(_ sender: UIButton) {
+        delegate?.starButtonTapped()
+        
+        isStared.toggle()
+        updateStar()
+    }
+    
 }
 

@@ -31,6 +31,9 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     
+    @IBOutlet weak var starImage: UIImageView!
+    
+    
     
     
     // MARK: - Awake From Nib
@@ -68,6 +71,12 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
         descriptionLabel.text = data.overView
         let url = URL(string: EndPoint.TMDBImagePathEndPoint + data.backgroundImageURL)
         posterImage.kf.setImage(with: url)
+        
+        if data.isStared {
+            starImage.tintColor = .yellow
+        }else {
+            starImage.tintColor = .darkGray
+        }
     }
     
     

@@ -16,6 +16,8 @@ class MediaInfoViewController: UIViewController {
     // MARK: - Propertys & Outlet
     var media: TMDBMedia?
     
+    var starButtonActionHandler: (() -> Void)?
+    
     private var castList: [CastInfo] = []
     private var crewList: [CrewInfo] = []
     
@@ -95,6 +97,7 @@ extension MediaInfoViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let media = media {
             header.updateCell(dy: media)
+            header.delegate = self
         }
         
         return header
@@ -193,5 +196,13 @@ extension MediaInfoViewController: OverViewExtensionDelegate {
     func seeMoreButtonTapped() {
         isOverViewExtended.toggle()
         tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .fade)
+    }
+}
+
+
+
+extension MediaInfoViewController: StarButtonDelegate {
+    func starButtonTapped() {
+        starButtonActionHandler?()
     }
 }

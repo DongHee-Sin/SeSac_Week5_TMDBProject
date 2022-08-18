@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -37,6 +36,21 @@
                                 <constraint firstAttribute="width" secondItem="c6f-Pv-BQt" secondAttribute="height" multiplier="3:4" id="9Mc-xi-3E9"/>
                             </constraints>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xc3-Vq-wBw">
+                            <rect key="frame" x="348" y="16" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="6fd-YQ-w3r"/>
+                                <constraint firstAttribute="width" secondItem="Xc3-Vq-wBw" secondAttribute="height" multiplier="1:1" id="H79-1w-mFT"/>
+                            </constraints>
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="star.fill" catalog="system">
+                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="24"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="starButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="prh-Bx-bHD"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
@@ -44,8 +58,10 @@
                         <constraint firstAttribute="bottom" secondItem="c6f-Pv-BQt" secondAttribute="bottom" id="3It-SM-9dY"/>
                         <constraint firstItem="qNU-Ej-vgL" firstAttribute="top" secondItem="6x3-1r-7sy" secondAttribute="top" id="5m9-3h-16e"/>
                         <constraint firstAttribute="bottom" secondItem="qNU-Ej-vgL" secondAttribute="bottom" id="Gno-j9-agB"/>
+                        <constraint firstItem="Xc3-Vq-wBw" firstAttribute="top" secondItem="6x3-1r-7sy" secondAttribute="top" constant="16" id="HHr-lg-LwK"/>
                         <constraint firstItem="c6f-Pv-BQt" firstAttribute="leading" secondItem="6x3-1r-7sy" secondAttribute="leading" constant="16" id="KSq-eE-JWB"/>
                         <constraint firstItem="vWD-k9-2Oc" firstAttribute="leading" secondItem="6x3-1r-7sy" secondAttribute="leading" constant="20" id="NxN-W2-0e2"/>
+                        <constraint firstAttribute="trailing" secondItem="Xc3-Vq-wBw" secondAttribute="trailing" constant="16" id="Shb-EG-NSp"/>
                         <constraint firstAttribute="width" secondItem="6x3-1r-7sy" secondAttribute="height" multiplier="2:1.2" id="Ykg-qv-DTN"/>
                         <constraint firstItem="vWD-k9-2Oc" firstAttribute="top" secondItem="6x3-1r-7sy" secondAttribute="top" constant="20" id="cqk-9x-E8e"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vWD-k9-2Oc" secondAttribute="trailing" constant="20" id="rvp-qC-9db"/>
@@ -65,12 +81,14 @@
             <connections>
                 <outlet property="backgroundImage" destination="qNU-Ej-vgL" id="i8q-9e-DpQ"/>
                 <outlet property="posterImage" destination="c6f-Pv-BQt" id="zJA-Sw-rgW"/>
+                <outlet property="starButton" destination="Xc3-Vq-wBw" id="TdZ-oT-C4q"/>
                 <outlet property="titleLabel" destination="vWD-k9-2Oc" id="lXF-GR-yFc"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="331.80803571428572"/>
         </view>
     </objects>
     <resources>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

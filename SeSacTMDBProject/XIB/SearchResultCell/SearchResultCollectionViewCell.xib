@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -138,6 +137,14 @@
                                             <constraint firstItem="KAt-wo-fFS" firstAttribute="top" secondItem="mkf-Vd-Nd4" secondAttribute="top" id="xYB-m5-g5W"/>
                                         </constraints>
                                     </view>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Jup-7O-fuY">
+                                        <rect key="frame" x="16" y="15.5" width="24" height="24"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Jup-7O-fuY" secondAttribute="height" id="1CV-KD-uXy"/>
+                                            <constraint firstAttribute="width" constant="24" id="d66-Sg-lUb"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -145,6 +152,7 @@
                                     <constraint firstAttribute="trailing" secondItem="P13-lK-wnk" secondAttribute="trailing" id="97j-Ib-vjt"/>
                                     <constraint firstItem="SBJ-lp-oT1" firstAttribute="top" secondItem="sRp-Pg-yIK" secondAttribute="top" id="9ZZ-2z-fFa"/>
                                     <constraint firstItem="P13-lK-wnk" firstAttribute="leading" secondItem="sRp-Pg-yIK" secondAttribute="leading" id="AN9-gM-hUB"/>
+                                    <constraint firstItem="Jup-7O-fuY" firstAttribute="top" secondItem="sRp-Pg-yIK" secondAttribute="top" constant="16" id="B5f-ay-6Cs"/>
                                     <constraint firstAttribute="trailing" secondItem="SBJ-lp-oT1" secondAttribute="trailing" id="HbO-ra-YKt"/>
                                     <constraint firstAttribute="bottom" secondItem="P13-lK-wnk" secondAttribute="bottom" id="KMN-21-3Ti"/>
                                     <constraint firstItem="KNv-mG-PRB" firstAttribute="top" secondItem="8ml-QA-qhd" secondAttribute="bottom" constant="5" id="Mvs-bw-J5h"/>
@@ -160,6 +168,7 @@
                                     <constraint firstItem="P13-lK-wnk" firstAttribute="top" secondItem="oiJ-Ra-Juv" secondAttribute="bottom" id="p5H-Fp-0F0"/>
                                     <constraint firstItem="8ml-QA-qhd" firstAttribute="top" secondItem="SBJ-lp-oT1" secondAttribute="bottom" constant="16" id="qds-gy-vwq"/>
                                     <constraint firstAttribute="trailing" secondItem="oiJ-Ra-Juv" secondAttribute="trailing" constant="16" id="rmQ-xJ-jRD"/>
+                                    <constraint firstItem="Jup-7O-fuY" firstAttribute="leading" secondItem="sRp-Pg-yIK" secondAttribute="leading" constant="16" id="syz-AM-gcr"/>
                                     <constraint firstItem="8ml-QA-qhd" firstAttribute="leading" secondItem="sRp-Pg-yIK" secondAttribute="leading" constant="16" id="xos-4M-UOT"/>
                                     <constraint firstItem="oiJ-Ra-Juv" firstAttribute="top" secondItem="KNv-mG-PRB" secondAttribute="bottom" constant="16" id="zKM-4H-fhc"/>
                                 </constraints>
@@ -194,6 +203,7 @@
                 <outlet property="gradeLabel" destination="zFt-sz-6nd" id="ezg-Ac-G46"/>
                 <outlet property="posterImage" destination="SBJ-lp-oT1" id="0dG-gt-qqg"/>
                 <outlet property="releaseDate" destination="g8f-60-cBe" id="DG3-Ya-PQn"/>
+                <outlet property="starImage" destination="Jup-7O-fuY" id="CDT-tG-N1C"/>
                 <outlet property="titleLabel" destination="8ml-QA-qhd" id="UQL-Ta-yyB"/>
             </connections>
             <point key="canvasLocation" x="392.75362318840581" y="237.05357142857142"/>
@@ -202,6 +212,7 @@
     <resources>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="paperclip.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

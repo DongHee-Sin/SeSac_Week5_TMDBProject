@@ -17,6 +17,7 @@ struct TMDBMedia {
     let grade: Double
     let backgroundImageURL: String
     let posterImageURL: String
+    var isStared: Bool = false
 }
 
 
@@ -97,5 +98,10 @@ class TMDBDataManager {
         }
         
         _interestMovieList.append(movieInfo)
+    }
+    
+    
+    func toggleStar(at index: Int) {
+        mediaList[index].isStared.toggle()
     }
 }

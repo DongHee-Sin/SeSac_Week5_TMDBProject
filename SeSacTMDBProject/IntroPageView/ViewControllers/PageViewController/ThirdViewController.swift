@@ -11,6 +11,8 @@ class ThirdViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(#function)
     }
 
     
@@ -25,4 +27,15 @@ class ThirdViewController: UIViewController {
         changeRootViewController(to: vc)
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        print(#function)
+    }
+    
+    
+    deinit {
+        print(#function)
+    }
 }

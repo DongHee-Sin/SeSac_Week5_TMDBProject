@@ -93,7 +93,7 @@ class TrendingListViewController: UIViewController {
     }
     
     
-    @objc func mapButtonTapped() {
+    @objc private func mapButtonTapped() {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: MapViewController.identifier) as? MapViewController else {
             return
         }
@@ -186,11 +186,18 @@ extension TrendingListViewController: UICollectionViewDelegate, UICollectionView
         guard let vc = storyboard?.instantiateViewController(withIdentifier: MediaInfoViewController.identifier) as? MediaInfoViewController else {
             return
         }
+
+        let movieData = mediaDataManager.getMediaData(at: indexPath.item)
         
-        let movieData = mediaDataManager.getMediaData(at: indexPath.row)
         vc.media = movieData
-        mediaDataManager.sawMovieInfo(id: movieData.id, title: movieData.title)
+        vc.starButtonActionHandler = { [weak self] in
+            guard let self = self else { return }
+            self.mediaDataManager.toggleStar(at: indexPath.item)
+            self.collectionView.reloadItems(at: [indexPath])
+        }
         
+        mediaDataManager.sawMovieInfo(id: movieData.id, title: movieData.title)
+
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
